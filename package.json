@@ -1,0 +1,19 @@
+{
+  "name": "greenfield",
+  "version": "1.0.0",
+  "description": "An interactive crowd-sourced playlist builder.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RiceNBeans/noname.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RiceNBeans/noname/issues"
+  },
+  "homepage": "https://github.com/RiceNBeans/noname#readme"
+}
