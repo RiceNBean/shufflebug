@@ -11,9 +11,10 @@ app.set('PORT', process.env.PORT || 3000);
 var clientId = '81348298631dbd924acba1a117c7ab7d';
 var clientSecret = '594340f670ba0580802e15a95787d7b9';
 
-app.use(bodyParser());
+app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('./client'));
+app.use('/lib', express.static('./node_modules'));
 
 SC.init({
   id: clientId

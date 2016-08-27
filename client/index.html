@@ -2,16 +2,21 @@
 <html ng-app="app">
   <head>
     <title></title>
-    <script src="../node_modules/angular/angular.min.js"></script>
-    <script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <link rel="stylesheet" href="../node_modules/bootstrap/bootstrap.min.css">
+    <script src="../lib/angular/angular.min.js"></script>
+    <script src="../lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="stylesheet.css">
     <script src="./app/app.js" charset="utf-8"></script>
     <script src="./app/config.js" charset="utf-8"></script>
+    <script src="./create-playlist/create-playlist-ctrl.js" charset="utf-8"></script>
+    <script src="./create-playlist/create-playlist-factory.js" charset="utf-8"></script>
   </head>
   <body>
     <h1>Home</h1>
-    <div ui-view></div>
+    <a href="#/create">Create Playlist</a>
+
+    <div ui-view>
+    </div>
+
   </body>
 </html>
