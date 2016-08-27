@@ -23,6 +23,7 @@
     "bootstrap": "^3.3.7",
     "cors": "^2.8.0",
     "express": "^4.14.0",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "node-soundcloud": "0.0.5",
   }
 }
