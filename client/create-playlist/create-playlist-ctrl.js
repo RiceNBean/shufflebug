@@ -1,4 +1,4 @@
-angular.module('create-playlist', [])
+angular.module('app.create', [])
 .controller('CreatePlaylistCtrl', CreatePlaylistCtrl);
 
 function CreatePlaylistCtrl(Create){

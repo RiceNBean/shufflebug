@@ -1,4 +1,4 @@
-angular.module('create-playlist')
+angular.module('app.create')
 .factory("Create", Create);
 
 function Create($http, $q){
