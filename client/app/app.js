@@ -1,4 +1,4 @@
-angular.module('app', ['ui.router', 'app.create', 'app.playlist', 'plangular', 'app.explore'])
+angular.module('app', ['ui.router', 'app.create', 'app.playlist', 'plangular', 'app.explore', 'app.player'])
 .config(function($stateProvider, $urlRouterProvider, plangularConfigProvider){
   $stateProvider
   .state('create',{

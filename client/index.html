@@ -6,7 +6,9 @@
     <script src="../lib/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="./lib/plangular-3/dist/plangular.min.js" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./lib/materialize-css/dist/css/materialize.min.css" charset="utf-8">
+    <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.min.css" charset="utf-8">
     <link rel="stylesheet" href="/styles/master.css" charset="utf-8">
 
     <script src="./app/app.js" charset="utf-8"></script>
@@ -21,32 +23,25 @@
     <script src="./explore-playlists/explore-playlists-ctrl.js" charset="utf-8"></script>
     <script src="./explore-playlists/explore-playlists-factory.js" charset="utf-8"></script>
 
+    <script src="./player/player-ctrl.js" charset="utf-8"></script>
+    <script src="./player/player-factory.js" charset="utf-8"></script>
 
   </head>
   <body>
 
-    <a href="#/create">Create Playlist</a>
-    <a href="#/playlist">Single Playlist</a>
-    <a href="#/explore">Explore Playlists</a>
+    <nav>
+      <div class="nav-wrapper">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a href="#/create">Create Playlist</a></li>
+          <li><a href="#/playlist">Single Playlist</a></li>
+          <li><a href="#/explore">Explore Playlists</a></li>
+        </ul>
+      </div>
+    </nav>
+
+
     <div ui-view></div>
 
-    <div id="music-player">
-      <div plangular="http://soundcloud.com/mrsjxn/touch-this" class="flex flex-center">
-      <button ng-click="playPause()"
-        title="Play/Pause"
-        class="flex-none h4 mr2 button button-transparent button-grow rounded">
-        <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
-        <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
-      </button>
-
-        <progress
-          class="progress"
-          ng-click="seek($event)"
-          ng-value="currentTime / duration || 0">
-          {{ currentTime / duration }}
-        </progress>
-      </div>
-    </div>
-
+    <div id="music-player" ng-include="'./player/player.html'"></div>
   </body>
 </html>
