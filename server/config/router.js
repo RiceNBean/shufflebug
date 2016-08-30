@@ -16,7 +16,7 @@ router.get('/api/soundcloud/search', soundcloudController.search);
 //edit songs in playlist
 router.post('/db/playlists/song/add', playlistsController.addSong);
 router.post('/db/playlists/song/remove', playlistsController.removeSong);
-router.post('/db/playlists/song/upvote', playlistsController.upVoteSong);
-router.post('/db/playlists/song/downvote', playlistsController.downVoteSong);
+router.post('/db/playlists/song/upvote', playlistsController.upvoteSong);
+router.post('/db/playlists/song/downvote', playlistsController.downvoteSong);
 
 module.exports = router;
