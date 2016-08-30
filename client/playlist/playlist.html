@@ -1,0 +1,28 @@
+<div>
+  <form class="search" name="searchSong">
+    <input type="text" ng-model="vm.searchInput" ng-change="vm.searchSong()" placeholder="Search" value="" required>
+    <p ng-if="vm.searchInput">You search for {{vm.searchInput}}</p>
+
+    <ul ng-repeat="entry in vm.searchResult">
+      <li>{{entry}}</li>
+    </ul>
+  </form>
+
+  <p>Name: {{vm.playlistName}}</p>
+  <p>Description: {{vm.description}}</p>
+  <p>Total upVotes: {{vm.upvote}}</p>
+  <p>Total downVotes: {{vm.downvote}}</p>
+
+  <table class="table">
+    <tr>
+      <th>Artist</th>
+      <th>SongURL</th>
+      <th>Album</th>
+      <th>AlbumURL</th>
+      <th>upVotes</th>
+      <th>downVotes</th>
+      <th>Remove</th>
+    </tr>
+  </table>
+
+</div>
