@@ -20,6 +20,7 @@ function Playlist($http){
       }
     })
     .then(function(res){
+      //songID, songTitle, songurl, upvotes, downvotes
       return res.data;
     })
     .catch(function(err){
@@ -32,10 +33,11 @@ function Playlist($http){
       method: 'GET',
       url: '/api/soundcloud/search',
       params: {
-        searchInput: searchInput
+        q: searchInput
       }
     })
     .then(function(res){
+      //songURL, title, duration
       return res.data;
     })
     .catch(function(err){
@@ -45,10 +47,13 @@ function Playlist($http){
   function addSong(songURL, playlistID){
     return $http({
       method: 'POST',
-      url: 'db/playlists/:id/song/add',
-      params: {
+      url: 'db/playlists/song/add',
+      data: {
         playlistID: playlistID,
-        songURL: songURL
+        songObj: {
+          songURL: songURL,
+          title: title
+        }
       }
     })
     .then(function(res){
