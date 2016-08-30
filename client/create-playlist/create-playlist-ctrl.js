@@ -16,6 +16,7 @@ function CreatePlaylistCtrl(Create){
     }
 
     Create.postPlaylist(playerInfo);
+    //.then use the id to redirect to the single playlist view
 
   }
 

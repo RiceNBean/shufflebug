@@ -10,10 +10,11 @@ function Create($http, $q){
     console.log("post playlist", playlistInfo);
     return $http({
       method: 'POST',
-      url: '/api/create',
+      url: '/db/playlists/create',
       data: playlistInfo
     })
     .then(function(res){
+      //should get a response of the id of the playlist created
       return res.data;
     })
     .catch(function(err){
