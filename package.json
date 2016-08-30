@@ -27,5 +27,8 @@
     "node-soundcloud": "0.0.5",
     "plangular-3": "^3.1.2",
     "request": "^2.74.0"
+  },
+  "devDependencies": {
+    "font-awesome": "^4.6.3"
   }
 }

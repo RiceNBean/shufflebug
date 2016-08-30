@@ -1,5 +1,16 @@
-<div>
-  <form class="search" name="searchSong">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+ <div>
+  <h3>Playlist Name {{vm.playlistName}}</h3>
+  <button class="btn waves-effect waves-light" type="button" name="button">
+    Play all
+  </button>
+  <button class="btn disabled" type="button" name="button">Bookmark</button> <br>
+  <p>Description: {{vm.description}}</p>
+  <p>upVotes: {{vm.upvote}} / downVotes: {{vm.downvote}}</p>
+
+  <form name="searchSong">
     <input type="text" ng-model="vm.searchInput" ng-change="vm.searchSong()" placeholder="Search" value="" required>
     <p ng-if="vm.searchInput">You search for {{vm.searchInput}}</p>
 
@@ -8,20 +19,50 @@
     </ul>
   </form>
 
-  <p>Name: {{vm.playlistName}}</p>
-  <p>Description: {{vm.description}}</p>
-  <p>Total upVotes: {{vm.upvote}}</p>
-  <p>Total downVotes: {{vm.downvote}}</p>
+  <p>List of songs</p>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Song Title</th>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>upVotes</th>
+        <th>downVotes</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
 
-  <table class="table">
     <tr>
-      <th>Artist</th>
-      <th>SongURL</th>
-      <th>Album</th>
-      <th>AlbumURL</th>
-      <th>upVotes</th>
-      <th>downVotes</th>
-      <th>Remove</th>
+      <td>01</td>
+      <td><a ng-click="vm.playSong()">River Flows In You</a></td>
+      <td>Yiruma</td>
+      <td>First Love</td>
+      <td>
+        <i ng-click="vm.upvote()" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+        10
+      </td>
+      <td>
+        <i ng-click="vm.downvote()"class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+        0
+      </td>
+      <td><i ng-click="vm.removeSong()" class="fa fa-times" aria-hidden="true"></td>
+    </tr>
+
+    <tr>
+      <td>02</td>
+      <td><a ng-click="vm.playSong()">Spring Time</a></td>
+      <td>Yiruma</td>
+      <td>First Love</td>
+      <td>
+        <i ng-click="vm.upvote()" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+        10
+      </td>
+      <td>
+        <i ng-click="vm.downvote()"class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+        0
+      </td>
+      <td><i ng-click="vm.removeSong()" class="fa fa-times" aria-hidden="true"></td>
     </tr>
   </table>
 
