@@ -1,0 +1,81 @@
+
+.navbar-inverse {
+  background-color: #000033;
+}
+
+.container-fluid {
+  background-color: #000033
+}
+
+input.form-control {
+  border-color: #000033;
+  background-color:#666666;
+  color: white;
+}
+
+input:focus {
+  background-color: white;
+}
+
+.btn-default {
+  background-color: #666666;
+  border-color: #000033;
+}
+
+.dropdown:hover .dropdown-menu {
+  background-color: #000033;
+  color: #666666;
+  display: block;
+}
+
+.container {
+  padding-top: 2em;
+  display: inline;
+}
+
+.card {
+  margin:2em;
+  padding:2em;
+  color: white;
+  display: block;
+}
+
+.portfolio .thumbnail {
+    position: relative;
+}
+
+.portfolio .thumbnail:hover {
+    cursor: pointer;
+}
+
+.portfolio .caption {
+    bottom: 0;
+    position: absolute;
+}
+
+.portfolio .btn {
+    opacity: 0.75;
+}
+
+card {
+  color: white;
+}
+
+
+body {
+  background: url("../assets/backgroundwave1.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+.footer{
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer img {
+  width: 100%;
+  opacity: 0.85;
+}
