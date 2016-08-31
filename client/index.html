@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html ng-app="app">
   <head>
-    <title></title>
-    <!-- Style Sheets -->
-    <link rel="stylesheet" href="./styles/master-style.css">
+    <title>noname</title>
+    <script src="../lib/angular/angular.min.js"></script>
+    <script src="../lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./lib/plangular-3/dist/plangular.min.js" charset="utf-8"></script>
 
-    <!-- <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./lib/materialize-css/dist/css/materialize.min.css" charset="utf-8">
+    <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.min.css" charset="utf-8">
+    <link rel="stylesheet" href="/styles/master.css" charset="utf-8">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Angular Dependencies -->
+    <script src="./app/app.js" charset="utf-8"></script>
+    <script src="./app/config.js" charset="utf-8"></script>
 
-    <!-- <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./create-playlist/create-playlist-ctrl.js" charset="utf-8"></script>
+    <script src="./create-playlist/create-playlist-factory.js" charset="utf-8"></script>
 
-    <script src="./node_modules/angular-ui-router/release/angular-ui-router.min.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
-    <!-- Controller JS -->
+    <script src="./playlist/playlist-ctrl.js" charset="utf-8"></script>
+    <script src="./playlist/playlist-factory.js" charset="utf-8"></script>
 
-    <script src="./playlist/playlist-ctrl.js"></script>
-    <script src="./playlist/playlist-factory.js">
-    </script>
-    <script src="./app/app.js"></script>
-    <!-- END -->
+    <script src="./explore-playlists/explore-playlists-ctrl.js" charset="utf-8"></script>
+    <script src="./explore-playlists/explore-playlists-factory.js" charset="utf-8"></script>
+
+    <script src="./player/player-ctrl.js" charset="utf-8"></script>
+    <script src="./player/player-factory.js" charset="utf-8"></script>
 
   </head>
   <body>
-    <div ui-view></div>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -49,9 +51,9 @@
           <li class="dropdown">
           <a class="dropdown-toggle" data-togggle="dropdown" href="#">Playlist<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">My Playlists</a></li>
-            <li><a href="#">Edit Playlists</a></li>
-            <li><a href="#">Create</a></li>
+            <li><a href="#/explore">Explore Playlists</a></li>
+            <li><a href="#/playlist">Single Playlist</a></li>
+            <li><a href="#/create">Create</a></li>
           </ul>
         </li>
         <li><a href="#">Logout</a></li>
@@ -59,8 +61,7 @@
       </div>
     </nav>
 
-    <footer class="footer">
-      <img src="./assets/footer-audio-player.png" alt="" />
-    </footer>
+    <div ui-view></div>
+    <div id="music-player" ng-include="'./player/player.html'"></div>
   </body>
 </html>

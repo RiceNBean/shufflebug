@@ -23,6 +23,13 @@
     "bootstrap": "^3.3.7",
     "cors": "^2.8.0",
     "express": "^4.14.0",
+    "materialize-css": "^0.97.7",
+    "mongoose": "^4.5.10",
+    "node-soundcloud": "0.0.5",
+    "plangular-3": "^3.1.2",
     "request": "^2.74.0"
+  },
+  "devDependencies": {
+    "font-awesome": "^4.6.3"
   }
 }
