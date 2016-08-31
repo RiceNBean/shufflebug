@@ -4,7 +4,7 @@ module.exports = {
 
 	//creates new playlist from playlist model
 	createPlaylist: function(req, res) {
-		var newPlaylist = new playlist(req.query);
+		var newPlaylist = new playlist(req.body);
 		newPlaylist.save(function (error, post) {
 			if (error) {
 				res.send(error);
