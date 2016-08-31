@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 //makes mongoose connection to mongoDB programmatically, ie from our program
-mongoose.connect('mongodb://localhost/playlist');
+mongoose.connect(process.env.MONGODB_URI);
 
 //mongoose mimics a schema and validates data, fields and data types.
 //MongoDB stores objects as plain JSON and mongoose works with the JSON
