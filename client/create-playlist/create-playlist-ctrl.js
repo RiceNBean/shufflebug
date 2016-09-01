@@ -1,7 +1,7 @@
-angular.module('app.create', [])
+angular.module('app.create', ['ngCookies', 'ui.router'])
 .controller('CreatePlaylistCtrl', CreatePlaylistCtrl);
 
-function CreatePlaylistCtrl(Create){
+function CreatePlaylistCtrl($state, Create, $cookies){
   var vm = this;
 
   vm.submitPlaylist = function(){
@@ -17,8 +17,8 @@ function CreatePlaylistCtrl(Create){
     Create.postPlaylist(playerInfo)
     .then(function(result){
       console.log("result._id", result._id);
-      //then use the id to redirect to the single playlist view
-      return result;
+      $cookies.put('playlistID', result._id);
+      return $state.go('playlist');
     });
 
   }

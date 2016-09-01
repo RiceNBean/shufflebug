@@ -1,9 +1,9 @@
-angular.module('app.playlist', [])
+angular.module('app.playlist', ['ngCookies'])
 .controller('PlaylistCtrl', PlaylistCtrl);
 
-function PlaylistCtrl(Playlist, Player, $rootScope){
+function PlaylistCtrl(Playlist, Player, $rootScope, $cookies){
   var vm = this;
-  var playlistID = "57c71e16eed3915f0f4a619b";
+  var playlistID = $cookies.get('playlistID');
 
   vm.fetchSongs = function(id){
     Playlist.fetchSongs(playlistID)
@@ -60,10 +60,8 @@ function PlaylistCtrl(Playlist, Player, $rootScope){
     });
   }
 
-  vm.playSong = function(){
-    //go to player factory
+  vm.playSong = function(songURL){
     console.log("in playlist ctrl, playsong()");
-    var songURL = "https://soundcloud.com/awfulpianosound/yiruma-river-flows-in-you";
     Player.setCurrent(songURL);
     $rootScope.$emit('change');
   }
@@ -73,6 +71,7 @@ function PlaylistCtrl(Playlist, Player, $rootScope){
     return min + ":" + (sec < 10 ? '0' : '') + sec;
   }
   var init = function(){
+    //check if playlist
     vm.fetchSongs(playlistID);
   }
   init();

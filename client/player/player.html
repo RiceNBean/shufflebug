@@ -36,7 +36,7 @@
 <div ng-controller="PlayerCtrl as vm">
 <div>
   {{currentSong}}
-  <div plangular={{currentSong}} class="py1">
+  <div plangular={{currentSong}} ng-if="currentSong" class="py1">
     <div class="relative bg-silver" style="height:6rem;">
       <div class="absolute top-0 bottom-0 left-0 bg-aqua"
         style="width:{{ 100 * (currentTime / duration) || 0 }}%"></div>

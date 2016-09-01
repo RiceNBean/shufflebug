@@ -15,6 +15,7 @@
       <thead>
         <tr>
           <th>#</th>
+          <th>Play</th>
           <th>Song Title</th>
           <th>Length</th>
           <th>up</th>
@@ -24,6 +25,7 @@
       </thead>
       <tr ng-repeat="song in vm.songData">
         <td>{{$index+1}}</td>
+        <td ng-click="vm.playSong(song.songURL)">play</td>
         <td>{{song.title}}</td>
         <td>{{song.duration}}</td>
         <td class="col-md-2">
@@ -45,7 +47,7 @@
     <form name="searchSong">
       <input type="text" placeholder="Search" value=""
         ng-model="vm.searchInput"
-        ng-model-options="{ debounce: 3000}"
+        ng-model-options="{ debounce: 3000 }"
         ng-change="vm.searchSong()" required>
       <p ng-if="vm.searchInput">You search for {{vm.searchInput}}</p>
 
