@@ -18,7 +18,8 @@ function CreatePlaylistCtrl($state, Create, $cookies){
     .then(function(result){
       console.log("result._id", result._id);
       $cookies.put('playlistID', result._id);
-      return $state.go('playlist');
+      $state.go('playlist');
+      return result;
     });
 
   }
