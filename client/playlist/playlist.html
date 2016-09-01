@@ -1,69 +1,54 @@
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
- <div>
-  <h3>Playlist Name {{vm.playlistName}}</h3>
-  <button class="btn waves-effect waves-light" type="button" name="button">
-    Play all
-  </button>
-  <button class="btn disabled" type="button" name="button">Bookmark</button> <br>
-  <p>Description: {{vm.description}}</p>
-  <p>upVotes: {{vm.upvote}} / downVotes: {{vm.downvote}}</p>
-
-  <form name="searchSong">
-    <input type="text" ng-model="vm.searchInput" ng-change="vm.searchSong()" placeholder="Search" value="" required>
-    <p ng-if="vm.searchInput">You search for {{vm.searchInput}}</p>
-
-    <ul ng-repeat="entry in vm.searchResults">
-      <a ng-click={{vm.addSong()}}><li>{{entry.title}}</li></a>
-      <li>{{entry.permalink_url}}</li>
-      <li>{{entry.duration}}</li>
-
-    </ul>
-  </form>
-
-  <p>List of songs</p>
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Song Title</th>
-        <th>Length</th>
-        <th>upVotes</th>
-        <th>downVotes</th>
-        <th>Remove</th>
+ <div class="flex-container">
+  <div class="flex-item">
+    <h3>{{vm.playlistName}}</h3>
+     <button class="btn waves-effect waves-light" type="button" name="button">
+       Play all
+    </button>
+    <button class="btn disabled" type="button" name="button">Bookmark</button> <br>
+    <p>Description: {{vm.description}}</p>
+    <p>up: {{vm.upvote}} / down: {{vm.downvote}}</p>
+    <p>Number of songs in playlist: {{vm.songData.length}}</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Song Title</th>
+          <th>Length</th>
+          <th>up</th>
+          <th>down</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tr ng-repeat="song in vm.songData">
+        <td>{{$index}}</td>
+        <td>{{song.title}}</td>
+        <td>{{song.duration}}</td>
+        <td>{{song.upvotes}}</td>
+        <td>{{song.downvotes}}</td>
+        <td>x</td>
       </tr>
-    </thead>
+    </table>
+  </div>
 
-    <tr>
-      <td>01</td>
-      <td><a ng-click="vm.playSong()">River Flows In You</a></td>
-      <td>3:20</td>
-      <td>
-        <i ng-click="vm.upvote()" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-        10
-      </td>
-      <td>
-        <i ng-click="vm.downvote()"class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-        0
-      </td>
-      <td><i ng-click="vm.removeSong()" class="fa fa-times" aria-hidden="true"></td>
-    </tr>
 
-    <tr>
-      <td>02</td>
-      <td><a ng-click="vm.playSong()">Spring Time</a></td>
-      <td>3:10</td>
-      <td>
-        <i ng-click="vm.upvote()" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-        10
-      </td>
-      <td>
-        <i ng-click="vm.downvote()"class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-        0
-      </td>
-      <td><i ng-click="vm.removeSong()" class="fa fa-times" aria-hidden="true"></td>
-    </tr>
-  </table>
+  <div class="flex-item">
+    <form name="searchSong">
+      <input type="text" placeholder="Search" value=""
+        ng-model="vm.searchInput"
+        ng-model-options="{ debounce: 3000}"
+        ng-change="vm.searchSong()" required>
+      <p ng-if="vm.searchInput">You search for {{vm.searchInput}}</p>
+
+      <ul ng-if="vm.searchInput" ng-repeat="entry in vm.searchResults">
+        <li>{{entry.title}}</li>
+        <li>{{entry.duration}}
+          <button ng-click="vm.addSong(entry.songURL, entry.title)" type="button">Add</button>
+        </li>
+      </ul>
+    </form>
+  </div>
 
 </div>

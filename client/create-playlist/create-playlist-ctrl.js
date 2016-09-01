@@ -10,13 +10,16 @@ function CreatePlaylistCtrl(Create){
     var playerInfo = {
       name: vm.playlistName,
       description: vm.description,
-      limit: vm.limit,
-      // tags: vm.tags,
-      expiration: vm.exp
+      limit: 30,
+      expiration: 30
     }
 
-    Create.postPlaylist(playerInfo);
-    //.then use the id to redirect to the single playlist view
+    Create.postPlaylist(playerInfo)
+    .then(function(result){
+      console.log("result._id", result._id);
+      //then use the id to redirect to the single playlist view
+      return result;
+    });
 
   }
 
