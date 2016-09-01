@@ -16,14 +16,14 @@
         <tr>
           <th>#</th>
           <th>Play</th>
-          <th>Song Title</th>
-          <th>Length</th>
-          <th>up</th>
-          <th>down</th>
+          <th ng-click="field='title'; reverseSort=!reverseSort">Song Title</th>
+          <th ng-click="field='duration'; reverseSort=!reverseSort">Length</th>
+          <th ng-click="field='upvotes'; reverseSort=!reverseSort">up</th>
+          <th ng-click="field='downvotes'; reverseSort=!reverseSort">down</th>
           <th>Remove</th>
         </tr>
       </thead>
-      <tr ng-repeat="song in vm.songData">
+      <tr ng-repeat="song in vm.songData | orderBy: field:reverseSort">
         <td>{{$index+1}}</td>
         <td ng-click="vm.playSong(song.songURL)">play</td>
         <td>{{song.title}}</td>
