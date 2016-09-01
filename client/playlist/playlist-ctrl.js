@@ -25,7 +25,6 @@ function PlaylistCtrl(Playlist, Player, $rootScope){
     });
   }
   vm.addSong = function(songURL, title){
-    console.log("in add song songurl", songURL);
     var songObj = {
       songURL: songURL,
       title: title
@@ -47,14 +46,16 @@ function PlaylistCtrl(Playlist, Player, $rootScope){
   vm.upvote = function(songID){
     Playlist.upvote(songID, playlistID)
     .then(function(result){
-      //fetch playlist ,turn thumbs black
+      //fetch playlist
+      vm.fetchSongs(playlistID);
+      //turn thumbs black
       return result;
     });
   }
   vm.downvote = function(songID){
     Playlist.downvote(songID, playlistID)
     .then(function(result){
-      //fetch playlist ,turn thumbs black
+      vm.fetchSongs(playlistID);
       return result;
     });
   }

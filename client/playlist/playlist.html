@@ -23,18 +23,25 @@
         </tr>
       </thead>
       <tr ng-repeat="song in vm.songData">
-        <td>{{$index}}</td>
+        <td>{{$index+1}}</td>
         <td>{{song.title}}</td>
         <td>{{song.duration}}</td>
-        <td>{{song.upvotes}}</td>
-        <td>{{song.downvotes}}</td>
-        <td>x</td>
+        <td class="col-md-2">
+          <i ng-click="vm.upvote(song._id)" class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{song.upvotes}}
+        </td>
+        <td class="col-md-2">
+          <i ng-click="vm.downvote(song._id)" class="fa fa-thumbs-o-down" aria-hidden="true"></i> {{song.downvotes}}
+        </td>
+        <td>
+          <i ng-click="vm.removeSong()" class="fa fa-times" aria-hidden="true"></i>
+        </td>
       </tr>
     </table>
   </div>
 
 
   <div class="flex-item">
+    <h3>Search & add songs</h3>
     <form name="searchSong">
       <input type="text" placeholder="Search" value=""
         ng-model="vm.searchInput"

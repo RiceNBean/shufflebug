@@ -80,10 +80,10 @@ function Playlist($http){
   function upvote(songID, playlistID){
     return $http({
       method: 'POST',
-      url: 'db/playlists/:id/song/upvote',
-      params: {
+      url: 'db/playlists/song/upvote',
+      data: {
         playlistID: playlistID,
-        songURL: songURL
+        songID: songID
       }
     })
     .then(function(res){
@@ -97,10 +97,10 @@ function Playlist($http){
   function downvote(songID, playlistID){
     return $http({
       method: 'POST',
-      url: 'db/playlists/:id/song/downvote',
-      params: {
+      url: 'db/playlists/song/downvote',
+      data: {
         playlistID: playlistID,
-        songURL: songURL
+        songID: songID
       }
     })
     .then(function(res){
