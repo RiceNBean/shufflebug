@@ -3,3 +3,12 @@
   bottom: 0;
   width:100%;
 }
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+}
+.flex-item {
+    width: 50%;
+    margin: 2px;
+}

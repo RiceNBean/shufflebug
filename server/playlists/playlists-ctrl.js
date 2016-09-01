@@ -39,7 +39,7 @@ module.exports = {
 	//adds song to playlist
 	addSong: function(req, res, next) {
 		playlist.update({ _id: req.body.playlistID },
-			{ $addToSet: { songs: req.body.songObj }}, 
+			{ $addToSet: { songs: req.body.songObj }},
 			function(error, numAffected) {
 				if (error) {
 					res.send(error);
@@ -52,7 +52,7 @@ module.exports = {
 	//removes song from playlists, needs listID && songID
 	removeSong: function(req, res) {
 		playlist.update({ _id: req.body.playlistID },
-			{ $pull:{ "songs": { _id: req.body.songID }}}, 
+			{ $pull:{ "songs": { _id: req.body.songID }}},
 			function(error, numAffected) {
 				if (error) {
 					res.send(error);
@@ -64,7 +64,7 @@ module.exports = {
 
 	upvoteSong: function(req, res) {
 		playlist.update({ _id: req.body.playlistID, "songs._id": req.body.songID},
-			{ $inc : { "songs.$.upvotes": 1 } }, 
+			{ $inc : { "songs.$.upvotes": 1 } },
 			function(error, numAffected) {
 				if (error) {
 					res.send(error);
@@ -76,7 +76,7 @@ module.exports = {
 
 	downvoteSong: function(req, res) {
 		playlist.update({ _id: req.body.playlistID, "songs._id": req.body.songID},
-			{ $inc : { "songs.$.downvotes": 1 } }, 
+			{ $inc : { "songs.$.downvotes": 1 } },
 			function(error, numAffected) {
 				if (error) {
 					res.send(error);
@@ -85,5 +85,5 @@ module.exports = {
 				}
 			});
 	},
-	
+
 }
