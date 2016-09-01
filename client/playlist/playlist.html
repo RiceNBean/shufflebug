@@ -33,7 +33,7 @@
           <i ng-click="vm.downvote(song._id)" class="fa fa-thumbs-o-down" aria-hidden="true"></i> {{song.downvotes}}
         </td>
         <td>
-          <i ng-click="vm.removeSong()" class="fa fa-times" aria-hidden="true"></i>
+          <i ng-click="vm.removeSong(song._id)" class="fa fa-times" aria-hidden="true"></i>
         </td>
       </tr>
     </table>

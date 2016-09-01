@@ -60,18 +60,16 @@ function Playlist($http){
     })
   }
   function removeSong(songID, playlistID){
-    //send request to
     return $http({
       method: 'POST',
-      url: 'db/playlists/:id/song/remove',
-      params: {
+      url: 'db/playlists/song/remove',
+      data: {
         playlistID: playlistID,
-        songURL: songURL
+        songID: songID
       }
     })
     .then(function(res){
       return res.data;
-      //fetch songs of playlist again
     })
     .catch(function(err){
       console.log("Error in adding song of playlist");
@@ -88,7 +86,6 @@ function Playlist($http){
     })
     .then(function(res){
       return res.data;
-      //fetch/ render on page
     })
     .catch(function(err){
       console.log("Error in adding song of playlist");
@@ -105,7 +102,6 @@ function Playlist($http){
     })
     .then(function(res){
       return res.data;
-      //render on page
     })
     .catch(function(err){
       console.log("Error in adding song of playlist");

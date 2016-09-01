@@ -39,7 +39,7 @@ function PlaylistCtrl(Playlist, Player, $rootScope){
   vm.removeSong = function(songID){
     Playlist.removeSong(songID, playlistID)
     .then(function(result){
-      //fectch playlist again
+      vm.fetchSongs(playlistID);
       return result;
     })
   }
