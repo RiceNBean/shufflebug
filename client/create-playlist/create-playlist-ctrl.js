@@ -6,17 +6,14 @@ function CreatePlaylistCtrl($state, Create, $cookies){
 
   vm.submitPlaylist = function(){
     console.log("submit playlist!");
-    console.log(vm.playlistName);
     var playerInfo = {
       name: vm.playlistName,
       description: vm.description,
-      limit: 30,
-      expiration: 30
+      limit: 30
     }
 
     Create.postPlaylist(playerInfo)
     .then(function(result){
-      console.log("result._id", result._id);
       $cookies.put('playlistID', result._id);
       $state.go('playlist');
       return result;
