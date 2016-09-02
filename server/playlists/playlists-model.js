@@ -14,9 +14,10 @@ var PlaylistSchema = new mongoose.Schema({
 	name: { type: String, required: true, unique: true },
 	description: { type: String, required: true },
 	limit: { type: Number, default: 25 },
-	//experation, will expire after num of seconds in a week
+	//experation, document will expire after a week
 	createdAt: { type: Date, expires: '7d', default: Date.now },
 	score: Number,
+	tags: [],
 	songs: [{
 		title: String,
 		songURL: String,
