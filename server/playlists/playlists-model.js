@@ -10,14 +10,16 @@ mongoose.connect(process.env.MONGODB_URI);
 //playlist schema model
 var PlaylistSchema = new mongoose.Schema({
 	//all fields are given a name and a type
-	name: String,
-	description: String,
+	name: { type: String, required: true, unique: true },
+	description: { type: String, required: true, unique: true },
 	limit: { type: Number, default: 25 },
 	//syntax for adding a field with a default value
 	expiration: { type: Number, default: 604800 },
+	score: Number,
 	songs: [{
 		title: String,
-		songURL: String,
+		songURL: { type: String, unique: true },
+		duration: Number,
 		upvotes: { type: Number, default: 0 },
 		downvotes: { type: Number, default: 0 },
 	}]
