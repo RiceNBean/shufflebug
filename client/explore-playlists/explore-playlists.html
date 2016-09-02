@@ -1,14 +1,14 @@
-<div class="container" ng-controller="playlist-ctrl">
-    <div ng-repeat="key in lists">
-        <div class="text-center col-md-4">
-          <div class="card">
-            <img class="card-img" ng-src="{{key.image}}">
-            <div class="card-block">
-              <p class="card-title">Playlist: {{key.name}}</p>
-              <p class="card-text">Description: {{key.description}}</p>
-              <a href="#" class="btn btn-default">See Playlist</a>
-            </div>
+<div class="container" ng-controller="ExploreCtrl">
+  <div ng-repeat="key in data">
+      <div class="text-center col-md-4">
+        <div class="card">
+          <img class="card-img" ng-src="{{key.image}}">
+          <div class="card-block">
+            <p class="card-title">Playlist: {{key.name}}</p>
+            <p class="card-text">Description: {{key.description}}</p>
+            <a href="#" class="btn btn-default" ng-click="redirectPlaylist(key._id)">See Playlist</a>
           </div>
         </div>
-    </div>
+      </div>
+  </div>
 </div>
