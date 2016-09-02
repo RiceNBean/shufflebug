@@ -44,13 +44,25 @@ module.exports = {
 
 	//adds song to playlist
 	addSong: function(req, res, next) {
-		playlist.update({ _id: req.body.playlistID },
-			{ $addToSet: { songs: req.body.songObj }},
-			function(error, numAffected) {
+		playlist.find({ _id: req.body.playlistID },
+			function(error, data) {
 				if (error) {
 					res.send(error);
-				} else {
-					res.status(201).json(numAffected);
+				}
+				if (data[0].songs.length < data[0].limit) {
+					playlist.update({ _id: req.body.playlistID },
+						{ $addToSet: { songs: req.body.songObj }},
+						function(error, numAffected) {
+							if (error) {
+								res.send(error);
+							} else {
+								res.status(201).json(numAffected);
+							}
+						});
+					
+				}
+				if (data[0].songs.length == data[0].limit) {
+					res.status(500).send();
 				}
 			});
 	},
