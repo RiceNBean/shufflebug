@@ -1,17 +1,13 @@
 angular.module('app.explore')
 .factory("Explore", function($http){
-//getPlaylists to private
   return {
     getPlaylists: getPlaylists
   };
 //our http request to get all data from this endpoint
-  function getPlaylists(data){
+  function getPlaylists(){
     return $http({
       method: 'GET',
-      url: '/db/playlists/getAll',
-      params: {
-        data: data
-      }
+      url: '/db/playlists/getAll'
       //promise to show successful GET request
     }).then(function(success){
       return success.data;
