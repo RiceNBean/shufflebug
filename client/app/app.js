@@ -16,8 +16,13 @@ angular.module('app', ['ui.router', 'app.create', 'app.playlist', 'plangular', '
     templateUrl: "../explore-playlists/explore-playlists.html",
     controller: "ExploreCtrl as vm"
   })
+  .state('player',{
+    url: '/player',
+    templateUrl: "../player/player.html",
+    controller: "PlayerCtrl as vm"
+  })
 
   $urlRouterProvider.otherwise('/')
 
-  plangularConfigProvider.clientId='81348298631dbd924acba1a117c7ab7d'
+  plangularConfigProvider.clientId='81348298631dbd924acba1a117c7ab7d';
 })

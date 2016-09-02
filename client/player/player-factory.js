@@ -13,7 +13,7 @@ function Player($http){
   function getCurrent(){
     return currentSong;
   }
-
+  
   return {
     setCurrent: setCurrent,
     getCurrent: getCurrent
