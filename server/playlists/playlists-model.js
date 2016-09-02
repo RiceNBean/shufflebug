@@ -19,7 +19,7 @@ var PlaylistSchema = new mongoose.Schema({
 	songs: [{
 		title: String,
 		songURL: { type: String, unique: true },
-		duration: Number,
+		duration: String,
 		upvotes: { type: Number, default: 0 },
 		downvotes: { type: Number, default: 0 },
 	}]
