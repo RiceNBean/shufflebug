@@ -24,10 +24,11 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies){
       return result;
     });
   }
-  vm.addSong = function(songURL, title){
+  vm.addSong = function(songURL, title, duration){
     var songObj = {
       songURL: songURL,
-      title: title
+      title: title,
+      duration: duration
     }
     Playlist.addSong(songObj, playlistID)
     .then(function(result){

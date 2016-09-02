@@ -1,42 +1,12 @@
 <link rel="stylesheet" href="http://d2v52k3cl9vedd.cloudfront.net/bassdock/1.2.1/bassdock.min.css">
 <link rel="stylesheet" href="http://d2v52k3cl9vedd.cloudfront.net/vhs/0.1.0/vhs.min.css">
+<link rel="stylesheet" href="../styles/player.css">
 
-<style>
-  a { word-wrap: break-word }
-  code {
-    font-size: 87.5%;
-    color: #222;
-    background-color: rgba(127, 219, 255, .25);
-  }
-  .container-narrow { max-width: 48em }
-  .bg-dark { background-color:#102630; }
-  .button-logo {
-    width: 2em;
-    height: 2em;
-    border-radius: 10000px;
-    border-width: 3px;
-  }
-  .button-logo:hover {
-    color: #102630;
-    background-color: #ff4136;
-    opacity: 0.9;
-    box-shadow: 0 0 0 2px rgba(255,65,54,.5);
-  }
-  .button-logo:before,
-  .button-logo:after {
-    border-radius: inherit;
-  }
-  .button-outline { border-width: 2px }
-  .button-transparent:focus { box-shadow: inset 0 0 0 2px }
-  .button-grow { transition: transform, box-shadow, .05s ease }
-  .button-grow:hover { transform: scale(1.0625) }
-  .button-grow:active { transform: scale(.9375) }
-  .icon { top: .03125em }
-</style>
+
 <div ng-controller="PlayerCtrl as vm">
 <div>
   {{currentSong}}
-  <div plangular={{currentSong}} ng-if="currentSong" class="py1">
+  <div plangular={{currentSong}} ng-if="loaded" class="py1">
     <div class="relative bg-silver" style="height:6rem;">
       <div class="absolute top-0 bottom-0 left-0 bg-aqua"
         style="width:{{ 100 * (currentTime / duration) || 0 }}%"></div>
