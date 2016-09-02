@@ -20,8 +20,14 @@ module.exports = {
 			if (error) {
 				res.send(error);
 			} else {
+				data = data.map(function(playlist) {
+					playlist.score = playlist.songs.reduce(function(acc, song) {
+						return acc+song.upvotes-song.downvotes
+					}, 0);
+					return playlist;
+				});
 				res.status(200).json(data);
-			}
+			}	
 		});
 	},
 
