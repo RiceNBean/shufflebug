@@ -2,7 +2,7 @@
   <input type="text" placeholder="Search Playlists" ng-model="playlistSearch">
 </div>
 <div class="container">
-  <div ng-repeat="key in data | filter:playlistSearch | orderBy: '-score'">
+  <div ng-repeat="key in data | filter: {name:playlistSearch} | orderBy: '-score'">
       <div class="text-center col-md-4">
         <div class="card">
           <img class="card-img" ng-src="{{key.image}}">
