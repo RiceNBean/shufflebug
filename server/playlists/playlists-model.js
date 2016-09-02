@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_URI);
 var PlaylistSchema = new mongoose.Schema({
 	//all fields are given a name and a type
 	name: { type: String, required: true, unique: true },
-	description: { type: String, required: true, unique: true },
+	description: { type: String, required: true },
 	limit: { type: Number, default: 25 },
 	//syntax for adding a field with a default value
 	expiration: { type: Number, default: 604800 },
