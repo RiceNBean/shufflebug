@@ -6,7 +6,8 @@ angular.module('app.explore', ['ngCookies'])
       //grab that id
       //$cookies.get(_id);
       //we concat the playlistID to 'playlist' endpoint to access each playlist
-      $state.go('playlist/' + _id)
+      $cookies.put('playlistID', _id);
+      $state.go('playlist')
     };
     //get data from our database
     Explore.getPlaylists()
