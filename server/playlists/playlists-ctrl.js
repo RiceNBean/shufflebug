@@ -1,4 +1,4 @@
-var playlist = require('./playlists-model');
+var Playlist = require('./playlists-model');
 
 function checkDuplicate(songArray, URL){
 	var flag = false;
@@ -14,27 +14,33 @@ module.exports = {
 
 	//creates new playlist from playlist model
 	createPlaylist: function(req, res) {
-		var newPlaylist = new playlist(req.body);
-		newPlaylist.save(function (error, post) {
-			if (error) {
-				res.send(error);
+		Playlist.findOne({name: req.body.name},
+		function(error, data) {
+			if(!data) { 
+				var newPlaylist = new Playlist(req.body);
+				newPlaylist.save(function (error, post) {
+					if (error) {
+						res.send(error);
+					} else {
+						res.status(201).json(post);
+					}
+				});
 			} else {
-				res.status(201).json(post);
+				res.status(500).send();
 			}
-		});
+		})
 	},
 
 	//gets all playlists
 	getAllPlaylists: function(req, res) {
-		playlist.find(function(error, data) {
+		Playlist.find(function(error, data) {
 			if (error) {
 				res.send(error);
 			} else {
-				data = data.map(function(playlist) {
-					playlist.score = playlist.songs.reduce(function(acc, song) {
+				data.map(function(playlist) {
+					return playlist.score = playlist.songs.reduce(function(acc, song) {
 						return acc+song.upvotes-song.downvotes
 					}, 0);
-					return playlist;
 				});
 				res.status(200).json(data);
 			}	
@@ -43,7 +49,7 @@ module.exports = {
 
 	//gets specific playlist based on id
 	getPlaylist: function(req, res) {
-		playlist.findById(req.params.id, function(error, data) {
+		Playlist.findById(req.params.id, function(error, data) {
 			if (error) {
 				res.send(error);
 			} else {
@@ -53,17 +59,17 @@ module.exports = {
 	},
 
 	//adds song to playlist
-	addSong: function(req, res, next) {
-		playlist.find({ _id: req.body.playlistID },
+	addSong: function(req, res) {
+		Playlist.findOne({ _id: req.body.playlistID },
 		function(error, data) {
 			if (error) {
 				res.send(error);
 			}
-			else if (data[0].songs.length === data[0].limit || checkDuplicate(data[0].songs, req.body.songObj.songURL)) {
+			else if (data.songs.length === data.limit || checkDuplicate(data.songs, req.body.songObj.songURL)) {
 				res.status(500).send();
 			}
-			else if (data[0].songs.length < data[0].limit) {
-				playlist.update({ _id: req.body.playlistID },
+			else if (data.songs.length < data.limit) {
+				Playlist.update({ _id: req.body.playlistID },
 				{ $addToSet: { songs: req.body.songObj }},
 				function(error, numAffected) {
 					if (error) {
@@ -78,7 +84,7 @@ module.exports = {
 
 	//removes song from playlists, needs listID && songID
 	removeSong: function(req, res) {
-		playlist.update({ _id: req.body.playlistID },
+		Playlist.update({ _id: req.body.playlistID },
 		{ $pull:{ "songs": { _id: req.body.songID }}},
 		function(error, numAffected) {
 			if (error) {
@@ -90,7 +96,7 @@ module.exports = {
 	},
 
 	upvoteSong: function(req, res) {
-		playlist.update({ _id: req.body.playlistID, "songs._id": req.body.songID},
+		Playlist.update({ _id: req.body.playlistID, "songs._id": req.body.songID},
 		{ $inc : { "songs.$.upvotes": 1 } },
 		function(error, numAffected) {
 			if (error) {
@@ -102,7 +108,7 @@ module.exports = {
 	},
 
 	downvoteSong: function(req, res) {
-		playlist.update({ _id: req.body.playlistID, "songs._id": req.body.songID},
+		Playlist.update({ _id: req.body.playlistID, "songs._id": req.body.songID},
 		{ $inc : { "songs.$.downvotes": 1 } },
 		function(error, numAffected) {
 			if (error) {
