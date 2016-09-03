@@ -8,7 +8,9 @@
           <img class="card-img" ng-src="{{key.image}}">
           <div class="card-block">
             <p class="card-title">Playlist: {{key.name}}</p>
-            <p class="card-text">Description: {{key.description}}</p>
+            <p class="card-text">Description: {{key.description}}<br>
+            Created:{{key.createdAt | date:format:timezone}} 
+            </p>
             <a href="#" class="btn btn-default" ng-click="redirectPlaylist(key._id)">See Playlist</a>
           </div>
         </div>
