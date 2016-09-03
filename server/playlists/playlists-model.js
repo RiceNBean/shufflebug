@@ -30,4 +30,4 @@ var PlaylistSchema = new mongoose.Schema({
 
 //we now have a formSchema, BUT FIRST, inorder to create a new form
 //first we need to create a data model from the schema
-module.exports = mongoose.model('playlist', PlaylistSchema);
+module.exports = mongoose.model('Playlist', PlaylistSchema);
