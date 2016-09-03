@@ -1,5 +1,15 @@
 var playlist = require('./playlists-model');
 
+function checkDuplicate(songArray, URL){
+	var flag = false;
+	songArray.forEach(function(song) {
+		if(song.songURL === URL) {
+			return flag = true;
+		}
+	})
+	return flag;
+}
+
 module.exports = {
 
 	//creates new playlist from playlist model
@@ -45,63 +55,62 @@ module.exports = {
 	//adds song to playlist
 	addSong: function(req, res, next) {
 		playlist.find({ _id: req.body.playlistID },
-			function(error, data) {
-				if (error) {
-					res.send(error);
-				}
-				if (data[0].songs.length < data[0].limit) {
-					playlist.update({ _id: req.body.playlistID },
-						{ $addToSet: { songs: req.body.songObj }},
-						function(error, numAffected) {
-							if (error) {
-								res.send(error);
-							} else {
-								res.status(201).json(numAffected);
-							}
-						});
-					
-				}
-				if (data[0].songs.length == data[0].limit) {
-					res.status(500).send();
-				}
-			});
+		function(error, data) {
+			if (error) {
+				res.send(error);
+			}
+			else if (data[0].songs.length === data[0].limit || checkDuplicate(data[0].songs, req.body.songObj.songURL)) {
+				res.status(500).send();
+			}
+			else if (data[0].songs.length < data[0].limit) {
+				playlist.update({ _id: req.body.playlistID },
+				{ $addToSet: { songs: req.body.songObj }},
+				function(error, numAffected) {
+					if (error) {
+						res.send(error);
+					} else {
+						res.status(201).json(numAffected);
+					}
+				});
+			}
+		});
 	},
 
 	//removes song from playlists, needs listID && songID
 	removeSong: function(req, res) {
 		playlist.update({ _id: req.body.playlistID },
-			{ $pull:{ "songs": { _id: req.body.songID }}},
-			function(error, numAffected) {
-				if (error) {
-					res.send(error);
-				} else {
-					res.status(201).json(numAffected);
-				}
-			});
+		{ $pull:{ "songs": { _id: req.body.songID }}},
+		function(error, numAffected) {
+			if (error) {
+				res.send(error);
+			} else {
+				res.status(201).json(numAffected);
+			}
+		});
 	},
 
 	upvoteSong: function(req, res) {
 		playlist.update({ _id: req.body.playlistID, "songs._id": req.body.songID},
-			{ $inc : { "songs.$.upvotes": 1 } },
-			function(error, numAffected) {
-				if (error) {
-					res.send(error);
-				} else {
-					res.status(201).json(numAffected);
-				}
-			});
+		{ $inc : { "songs.$.upvotes": 1 } },
+		function(error, numAffected) {
+			if (error) {
+				res.send(error);
+			} else {
+				res.status(201).json(numAffected);
+			}
+		});
 	},
 
 	downvoteSong: function(req, res) {
 		playlist.update({ _id: req.body.playlistID, "songs._id": req.body.songID},
-			{ $inc : { "songs.$.downvotes": 1 } },
-			function(error, numAffected) {
-				if (error) {
-					res.send(error);
-				} else {
-					res.status(201).json(numAffected);
-				}
-			});
+		{ $inc : { "songs.$.downvotes": 1 } },
+		function(error, numAffected) {
+			if (error) {
+				res.send(error);
+			} else {
+				res.status(201).json(numAffected);
+			}
+		});
 	},
 
 }
