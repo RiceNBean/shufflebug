@@ -1,10 +1,10 @@
 angular.module('app.create')
-.factory("Create", Create);
+.factory('Create', Create);
 
-function Create($http){
+function Create($http) {
 
   function postPlaylist(playlistInfo){
-    console.log("post playlist", playlistInfo);
+    console.log('inside create-playlist-factory.js');
     return $http({
       method: 'POST',
       url: '/db/playlists/create',
@@ -15,7 +15,7 @@ function Create($http){
       return res.data;
     })
     .catch(function(err){
-      console.log("Failed posting playlist to server", err);
+      console.log('err creating playlist: ', err);
       return err;
     });
   }

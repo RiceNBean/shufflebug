@@ -1,25 +1,25 @@
 angular.module('app.playlist')
-.factory("Playlist", Playlist);
+.factory('Playlist', Playlist);
 
-function Playlist($http){
+function Playlist($http) {
 
-  function fetchSongs(playlistID){
+  function fetchSongs(playlistID) {
+    console.log('inside playlist-factory.js fetchSongs');
     return $http({
       method: 'GET',
       url: '/db/playlists/'+playlistID
     })
-    .then(function(res){
-      //songID, songTitle, songurl, upvotes, downvotes
+    .then(function(res) {
+      //songURL, title, duration, _id, downvotes, upvotes
       return res.data;
-
     })
-    .catch(function(err){
-      console.log("Error in fetching songs of playlist");
-    })
+    .catch(function(err) {
+      console.log('err retrieving playlist: ', err);
+    });
   }
 
-  function searchSong(searchInput){
-    console.log("in playlist factory, searchsong", searchInput);
+  function searchSong(searchInput) {
+    console.log('inside playlist-factory.js searchSong');
     return $http({
       method: 'GET',
       url: '/api/soundcloud/search',
@@ -27,16 +27,17 @@ function Playlist($http){
         q: searchInput
       }
     })
-    .then(function(res){
+    .then(function(res) {
       //songURL, title, duration
       return res.data;
     })
-    .catch(function(err){
-      console.log("Error in search song");
-    })
+    .catch(function(err) {
+      console.log('err searching songs: ', err);
+    });
   }
 
-  function addSong(songObj, playlistID){
+  function addSong(songObj, playlistID) {
+    console.log('inside playlist-factory.js addSong');
     return $http({
       method: 'POST',
       url: 'db/playlists/song/add',
@@ -45,17 +46,17 @@ function Playlist($http){
         songObj: songObj
       }
     })
-    .then(function(res){
+    .then(function(res) {
       return res.data;
-      //fetch songs of playlist again
     })
-    .catch(function(err){
-      console.log("Error in adding song of playlist");
+    .catch(function(err) {
+      console.log('err adding song: ', err);
       return err;
-    })
+    });
   }
   
-  function removeSong(songID, playlistID){
+  function removeSong(songID, playlistID) {
+    console.log('inside playlist-factory.js removeSong');
     return $http({
       method: 'POST',
       url: 'db/playlists/song/remove',
@@ -64,15 +65,16 @@ function Playlist($http){
         songID: songID
       }
     })
-    .then(function(res){
+    .then(function(res) {
       return res.data;
     })
-    .catch(function(err){
-      console.log("Error in adding song of playlist");
-    })
+    .catch(function(err) {
+      console.log('err removing song: ', err);
+    });
   }
 
-  function upvote(songID, playlistID){
+  function upvote(songID, playlistID) {
+    console.log('inside playlist-factory.js upvote');
     return $http({
       method: 'POST',
       url: 'db/playlists/song/upvote',
@@ -81,15 +83,16 @@ function Playlist($http){
         songID: songID
       }
     })
-    .then(function(res){
+    .then(function(res) {
       return res.data;
     })
-    .catch(function(err){
-      console.log("Error in adding song of playlist");
-    })
+    .catch(function(err) {
+      console.log('err upvoting song: ', err);
+    });
   }
 
-  function downvote(songID, playlistID){
+  function downvote(songID, playlistID) {
+    console.log('inside playlist-factory.js downvote');
     return $http({
       method: 'POST',
       url: 'db/playlists/song/downvote',
@@ -98,15 +101,15 @@ function Playlist($http){
         songID: songID
       }
     })
-    .then(function(res){
+    .then(function(res) {
       return res.data;
     })
-    .catch(function(err){
-      console.log("Error in adding song of playlist");
-    })
+    .catch(function(err) {
+      console.log('err downvoting song: ', err);
+    });
   }
 
-  return{
+  return {
     fetchSongs: fetchSongs,
     searchSong: searchSong,
     addSong: addSong,

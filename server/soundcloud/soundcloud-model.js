@@ -11,17 +11,20 @@ SC.init({
 module.exports = {
 
 	search: function(params) {
-		console.log('inside soundcloud-model.js search model');
+		console.log('inside soundcloud-model.js search');
 		return new Promise(function(resolve, reject) {
 			SC.get('/tracks', {
 				q: params.q,
 				'duration[to]': 600000
 			}, function(err, tracks) {
 				if(err) {
+					console.log('err searching soundcloud: ', err);
 					reject(err);
-				} resolve(tracks);
+				} else {
+					resolve(tracks);
+				}
 			});
-		})
+		});
 	}
 
 }

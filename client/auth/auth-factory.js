@@ -1,28 +1,34 @@
 angular.module('app.auth')
-.factory('Auth', function ($http) {
+.factory('Auth', Auth);
+
+function Auth($http) {
 
   function signin(user) {
+    console.log('inside auth-factory.js signin');
     return $http({
-    method: 'POST',
-    url: '/db/users/signin',
-    data: user
+      method: 'POST',
+      url: '/db/users/signin',
+      data: user
     })
-    .then(function (res) {
-      return res.data.username;
+    .then(function(res) {
+      return res.data;
     }).catch(function(err) {
+      console.log("err signing in: ", err);
       return err;
     });
   }
 
   function signup(user) {
+    console.log('inside auth-factory.js signup');
     return $http({
-    method: 'POST',
-    url: '/db/users/signup',
-    data: user
+      method: 'POST',
+      url: '/db/users/signup',
+      data: user
     })
-    .then(function (res) {
-      return res.data.username;
-    }).catch(function(err){
+    .then(function(res) {
+      return res.data;
+    }).catch(function(err) {
+      console.log("err signing up: ", err);
       return err;
     });
   }
@@ -32,4 +38,4 @@ angular.module('app.auth')
     signup: signup
   }
 
-});
+}

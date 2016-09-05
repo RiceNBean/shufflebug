@@ -15,7 +15,7 @@ app.use('/lib', express.static('./node_modules'));
 app.use('/', router);
 
 app.listen(app.get('PORT'), function() {
-  console.log('Express server listening on port ', app.get('PORT'));
+	console.log('Express server listening on port ', app.get('PORT'));
 });
 
 module.exports = app;
