@@ -57,6 +57,7 @@ function Playlist($http){
     })
     .catch(function(err){
       console.log("Error in adding song of playlist");
+      return err;
     })
   }
   function removeSong(songID, playlistID){

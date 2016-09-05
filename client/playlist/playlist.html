@@ -53,13 +53,14 @@
 
 
   <div class="flex-item">
-    <h3>Search & add songs</h3>
+    <h3>Search &amp; add songs</h3>
     <form name="searchSong">
       <input type="text" placeholder="Search" value=""
         ng-model="vm.searchInput"
         ng-model-options="{ debounce: 3000 }"
         ng-change="vm.searchSong()" required>
       <p ng-if="vm.searchInput">You search for {{vm.searchInput}}</p>
+      <p style="color:red;" ng-if="flag">Could not add song</p>
 
       <ul ng-if="vm.searchInput" ng-repeat="entry in vm.searchResults">
         <li>{{entry.title}}</li>

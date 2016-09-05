@@ -1,0 +1,13 @@
+<div class="container">
+  <h3>Sign In!</h3>
+
+  <form>
+    Username:
+    <input type="text" ng-model="vm.username" value="" placeholder="username" required><br>
+    Password:
+    <input type="password" ng-model="vm.password" value="" placeholder="password" required><br>
+    <p style="color:red;" ng-if="flag">Incorrect Username/Password!</p>
+    <button ng-click="vm.signin()">Submit</button>
+  </form>
+
+</div>

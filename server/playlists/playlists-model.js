@@ -1,12 +1,5 @@
 var mongoose = require('mongoose');
 
-//makes mongoose connection to mongoDB programmatically, ie from our program
-mongoose.connect(process.env.MONGODB_URI);
-
-//mongoose mimics a schema and validates data, fields and data types.
-//MongoDB stores objects as plain JSON and mongoose works with the JSON
-//adds the extra layer of validation
-
 //playlist schema model
 var PlaylistSchema = new mongoose.Schema({
 	//all fields are given a name and a type

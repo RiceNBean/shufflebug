@@ -1,5 +1,6 @@
 angular.module('app.explore', ['ngCookies'])
 .controller('ExploreCtrl', function($scope, Explore, $cookies, $state){
+    var checkLogin = $cookies.get('currentUser');
     $scope.data;
     //on click we should go to a new endpoint
     $scope.redirectPlaylist = function(_id){
@@ -17,5 +18,11 @@ angular.module('app.explore', ['ngCookies'])
     }).catch(function(error){
       console.log(error);
     });
+
+  function init() {
+    if(checkLogin === undefined) $state.go('signin');
+  }
+
+  init();
 
 });
