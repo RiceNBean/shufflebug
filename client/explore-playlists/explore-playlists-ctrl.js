@@ -18,4 +18,11 @@ angular.module('app.explore', ['ngCookies'])
       console.log(error);
     });
 
+  function init() {
+    var checkLogin = $cookies.get('currentUser');
+    if(checkLogin === undefined) $state.go('signin');
+  }
+
+  init();
+
 });

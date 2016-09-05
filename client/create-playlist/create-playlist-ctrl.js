@@ -21,5 +21,12 @@ function CreatePlaylistCtrl($state, Create, $cookies){
 
   }
 
+  function init() {
+    var checkLogin = $cookies.get('currentUser');
+    if(checkLogin === undefined) $state.go('signin');
+  }
+
+  init();
+
   return vm;
 }

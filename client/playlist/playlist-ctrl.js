@@ -1,7 +1,7 @@
 angular.module('app.playlist', ['ngCookies'])
 .controller('PlaylistCtrl', PlaylistCtrl);
 
-function PlaylistCtrl(Playlist, Player, $rootScope, $cookies){
+function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state){
   var vm = this;
   var playlistID = $cookies.get('playlistID');
 
@@ -66,15 +66,21 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies){
     Player.setCurrent(songURL);
     $rootScope.$emit('change');
   }
-  var toMinute = function(ms){
+  function toMinute(ms){
     var min = Math.floor(ms / 60000);
     var sec = ((ms % 60000) / 1000).toFixed(0);
     return min + ":" + (sec < 10 ? '0' : '') + sec;
   }
-  var init = function(){
+  function init(){
     //check if playlist
-    vm.fetchSongs(playlistID);
+    var checkLogin = $cookies.get('currentUser');
+    if(checkLogin === undefined) {
+      $state.go('signin');
+    } else {
+      vm.fetchSongs(playlistID);
+    }
   }
   init();
+  
   return vm;
 }
