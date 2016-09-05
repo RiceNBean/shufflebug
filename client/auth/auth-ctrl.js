@@ -4,6 +4,7 @@ angular.module('app.auth', ['ngCookies', 'ui.router'])
 function AuthCtrl($state, Auth, $cookies, $scope) {
 
   var vm = this;
+  var checkLogin = $cookies.get('currentUser');
   $scope.flag = false;
 
   vm.signin = function() {
@@ -56,7 +57,6 @@ function AuthCtrl($state, Auth, $cookies, $scope) {
 
   function init() {
     $scope.flag = false;
-    var checkLogin = $cookies.get('currentUser');
     if($state.current.name === 'signout' && checkLogin === undefined) {
       $state.go('signin');
     }

@@ -1,9 +1,11 @@
 angular.module('app.playlist', ['ngCookies'])
 .controller('PlaylistCtrl', PlaylistCtrl);
 
-function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state){
+function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope){
   var vm = this;
   var playlistID = $cookies.get('playlistID');
+  var checkLogin = $cookies.get('currentUser');
+  $scope.flag = false;
 
   vm.fetchSongs = function(id){
     Playlist.fetchSongs(playlistID)
@@ -25,6 +27,7 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state){
     });
   }
   vm.addSong = function(songURL, title, duration){
+    $scope.flag = false;
     var songObj = {
       songURL: songURL,
       title: title,
@@ -32,9 +35,13 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state){
     }
     Playlist.addSong(songObj, playlistID)
     .then(function(result){
-      //fetch playlist again
-      vm.fetchSongs(playlistID);
-      return result;
+      if(result.status === 500) {
+        $scope.flag = true;
+      } else {
+        //fetch playlist again
+        vm.fetchSongs(playlistID);
+        return result;
+      }
     });
   }
   vm.removeSong = function(songID){
@@ -72,11 +79,14 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state){
     return min + ":" + (sec < 10 ? '0' : '') + sec;
   }
   function init(){
+    $scope.flag = false;
     //check if playlist
-    var checkLogin = $cookies.get('currentUser');
     if(checkLogin === undefined) {
       $state.go('signin');
-    } else {
+    } else if(playlistID === undefined) {
+      $state.go('explore');
+    }
+    else {
       vm.fetchSongs(playlistID);
     }
   }
