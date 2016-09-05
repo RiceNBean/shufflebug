@@ -3,7 +3,7 @@ var soundcloudModel = require('./soundcloud-model.js');
 module.exports = {
 
 	search: function (req, res) {
-		console.log('inside soundcloud-ctrl.js search controller');
+		console.log('inside soundcloud-ctrl.js search');
 		soundcloudModel.search(req.query)
 		.then(function(data) {
 			var results = data.map(function(song) {

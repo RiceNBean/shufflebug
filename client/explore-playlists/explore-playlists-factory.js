@@ -1,24 +1,24 @@
 angular.module('app.explore')
-.factory("Explore", function($http){
+.factory('Explore', Explore);
 
-  //our http request to get all data from this endpoint
-  function getPlaylists(){
+function Explore($http) {
+
+  function getPlaylists() {
+    console.log('inside explore-playlists-factory.js getPlaylists')
     return $http({
       method: 'GET',
       url: '/db/playlists/getAll'
-      //promise to show successful GET request
     })
-    .then(function(success){
-      return success.data;
-      //give us error if error
+    .then(function(res){
+      return res.data;
     })
-    .catch(function(error){
-      console.log("error retrieving data: ", error);
+    .catch(function(err){
+      console.log('err retrieving playlists: ', err);
     });
   }
 
-  function deletePlaylist(playlistID){
-    console.log("deleting playlist")
+  function deletePlaylist(playlistID) {
+    console.log('inside explore-playlists-factory.js deletePlaylist')
     return $http({
       method: 'POST',
       url: '/db/playlists/delete',
@@ -26,13 +26,9 @@ angular.module('app.explore')
         playlistID: playlistID
       }
     })
-    .then(function(res){
-      console.log("delete res", res);
-      return res
-    })
     .catch(function(err){
-      console.log("Error in adding song of playlist");
-    })
+      console.log('err deleting playlist: ', err);
+    });
   }
 
   return {
@@ -40,4 +36,4 @@ angular.module('app.explore')
     deletePlaylist: deletePlaylist
   }
 
-});
+}

@@ -1,14 +1,16 @@
 angular.module('app.playlist', ['ngCookies'])
 .controller('PlaylistCtrl', PlaylistCtrl);
 
-function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope){
+function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope) {
+
   var vm = this;
   var playlistID = $cookies.get('playlistID');
   var currentUser = $cookies.get('currentUser');
   $scope.flag = false;
   $scope.creator;
 
-  vm.fetchSongs = function(){
+  vm.fetchSongs = function() {
+    console.log('inside playlist-ctrl.js fetchSongs');
     Playlist.fetchSongs(playlistID)
     .then(function(result){
       vm.playlistName = result.name;
@@ -17,10 +19,11 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope){
       vm.limit = result.limit;
       $scope.creator = result.creator===currentUser?true:false;
       return result;
-    })
+    });
   }
 
-  vm.searchSong = function(){
+  vm.searchSong = function() {
+    console.log('inside playlist-ctrl.js searchSong');
     Playlist.searchSong(vm.searchInput)
     .then(function(result){
       result.map(function(entry){
@@ -31,7 +34,8 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope){
     });
   }
 
-  vm.addSong = function(songURL, title, duration){
+  vm.addSong = function(songURL, title, duration) {
+    console.log('inside playlist-ctrl.js addSong');
     $scope.flag = false;
     var songObj = {
       songURL: songURL,
@@ -50,25 +54,27 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope){
     });
   }
 
-  vm.removeSong = function(songID){
+  vm.removeSong = function(songID) {
+    console.log('inside playlist-ctrl.js removeSong');
     Playlist.removeSong(songID, playlistID)
     .then(function(result){
       vm.fetchSongs();
       return result;
-    })
+    });
   }
 
-  vm.upvote = function(songID){
+  vm.upvote = function(songID) {
+    console.log('inside playlist-ctrl.js upvote');
     Playlist.upvote(songID, playlistID)
     .then(function(result){
       //fetch playlist
       vm.fetchSongs();
-      //turn thumbs black
       return result;
     });
   }
 
-  vm.downvote = function(songID){
+  vm.downvote = function(songID) {
+    console.log('inside playlist-ctrl.js downvote');
     Playlist.downvote(songID, playlistID)
     .then(function(result){
       vm.fetchSongs();
@@ -76,23 +82,23 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope){
     });
   }
 
-  vm.playSong = function(songURL){
-    console.log("in playlist ctrl, playsong()");
+  vm.playSong = function(songURL) {
+    console.log('inside playlist-ctrl.js playSong');
     Player.setCurrent(songURL);
     $rootScope.$emit('change');
   }
   
-  function toMinute(ms){
+  function toMinute(ms) {
     var min = Math.floor(ms / 60000);
     var sec = ((ms % 60000) / 1000).toFixed(0);
-    return min + ":" + (sec < 10 ? '0' : '') + sec;
+    return min + ':' + (sec < 10 ? '0' : '') + sec;
   }
 
-  function init(){
+  function init() {
     $scope.flag = false;
-    //check if playlist
     if(currentUser === undefined) {
       $state.go('signin');
+    //check if playlist
     } else if(playlistID === undefined) {
       $state.go('explore');
     }
@@ -104,4 +110,5 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope){
   init();
   
   return vm;
+
 }

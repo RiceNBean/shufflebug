@@ -1,9 +1,13 @@
 angular.module('app.explore', ['ngCookies'])
-.controller('ExploreCtrl', function($scope, Explore, $cookies, $state){
+.controller('ExploreCtrl', ExploreCtrl);
+
+function ExploreCtrl($scope, Explore, $cookies, $state) {
+
   var vm = this;
   var currentPlaylist = $cookies.get('playlistID');
   var currentUser = $cookies.get('currentUser');
   $scope.playlists;
+
   //on click we should go to a new endpoint
   vm.redirectPlaylist = function(playlistID){
     //grab that id
@@ -14,6 +18,7 @@ angular.module('app.explore', ['ngCookies'])
   };
 
   vm.getPlaylists = function() {
+    console.log('inside explore-playlists-ctrl.js getPlaylists');
     //get data from our database
     Explore.getPlaylists()
     .then(function(data){
@@ -24,20 +29,16 @@ angular.module('app.explore', ['ngCookies'])
       });
       //assign that data to $scope.data so we can use in html
       $scope.playlists = data;
-    }).catch(function(error){
-      console.log(error);
-    });  
+    });
   }
 
   vm.deletePlaylist = function(playlistID) {
+    console.log('inside explore-playlists-ctrl.js deletePlaylist');
     Explore.deletePlaylist(playlistID)
-    .then(function(data) {
+    .then(function() {
       if(playlistID === currentPlaylist) $cookies.remove('playlistID');
       vm.getPlaylists();
-      return data;
-    }).catch(function(error) {
-      console.log(error);
-    })
+    });
   }
 
   function init() {
@@ -52,4 +53,4 @@ angular.module('app.explore', ['ngCookies'])
 
   return vm;
 
-});
+}
