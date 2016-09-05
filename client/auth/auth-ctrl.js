@@ -4,7 +4,7 @@ angular.module('app.auth', ['ngCookies', 'ui.router'])
 function AuthCtrl($state, Auth, $cookies, $scope) {
 
   var vm = this;
-  var checkLogin = $cookies.get('currentUser');
+  var currentUser = $cookies.get('currentUser');
   $scope.flag = false;
 
   vm.signin = function() {
@@ -50,17 +50,17 @@ function AuthCtrl($state, Auth, $cookies, $scope) {
   }
 
   vm.signout = function() {
-    $cookies.remove('playlistID')
+    $cookies.remove('playlistID');
     $cookies.remove('currentUser');
     $state.go('signin');
   }
 
   function init() {
     $scope.flag = false;
-    if($state.current.name === 'signout' && checkLogin === undefined) {
+    if($state.current.name === 'signout' && currentUser === undefined) {
       $state.go('signin');
     }
-    if(($state.current.name === 'signup' || $state.current.name === 'signin') && checkLogin !== undefined) {
+    if(($state.current.name === 'signup' || $state.current.name === 'signin') && currentUser !== undefined) {
       $state.go('signout');
     }
   }

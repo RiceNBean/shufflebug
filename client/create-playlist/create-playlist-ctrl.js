@@ -3,7 +3,7 @@ angular.module('app.create', ['ngCookies', 'ui.router'])
 
 function CreatePlaylistCtrl($state, Create, $cookies, $scope){
   var vm = this;
-  var checkLogin = $cookies.get('currentUser');
+  var currentUser = $cookies.get('currentUser');
   $scope.flag = false;
 
   vm.submitPlaylist = function(){
@@ -11,7 +11,8 @@ function CreatePlaylistCtrl($state, Create, $cookies, $scope){
     var playerInfo = {
       name: vm.playlistName,
       description: vm.description,
-      limit: vm.limit
+      limit: vm.limit,
+      creator: currentUser
     }
 
     Create.postPlaylist(playerInfo)
@@ -29,7 +30,7 @@ function CreatePlaylistCtrl($state, Create, $cookies, $scope){
   }
 
   function init() {
-    if(checkLogin === undefined) $state.go('signin');
+    if(currentUser === undefined) $state.go('signin');
   }
 
   init();

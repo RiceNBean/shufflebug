@@ -2,14 +2,17 @@
   <input type="text" placeholder="Search Playlists" ng-model="playlistSearch">
 </div>
 <div class="container">
-  <div ng-repeat="key in data | filter: {name:playlistSearch} | orderBy: '-score'">
+  <div ng-repeat="playlist in playlists | filter: {name:playlistSearch} | orderBy: '-score'">
       <div class="text-center col-md-4">
         <div class="card">
-          <img class="card-img" ng-src="{{key.image}}">
+          <img class="card-img" ng-src="{{playlist.image}}">
           <div class="card-block">
-            <p class="card-title">Playlist: {{key.name}}</p>
-            <p class="card-text">Description: {{key.description}}</p>
-            <a href="#" class="btn btn-default" ng-click="redirectPlaylist(key._id)">See Playlist</a>
+            <p class="card-title">Playlist: {{playlist.name}}</p>
+            <p class="card-text" ng-if="playlist.fire">Description: {{playlist.description}} &#x1F525;</p>
+            <p class="card-text" ng-if="!playlist.fire">Description: {{playlist.description}}</p>
+            <a href="#" class="btn btn-default" ng-click="vm.redirectPlaylist(playlist._id)">See Playlist</a>
+            <a href="#" class="btn btn-default" ng-if="playlist.admin" ng-click="vm.deletePlaylist(playlist._id)">X</a>
+            <p class="card-text">Expiring In: {{playlist.expiringIn}}</p>
           </div>
         </div>
       </div>

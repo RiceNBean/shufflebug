@@ -7,7 +7,10 @@ module.exports = {
 		console.log('inside users-ctrl.js signin controller');
 		User.findOne({ username: req.body.username, password: req.body.password },
 		function(error, data) {
-			if(!data) {
+			if(error) {
+				res.send(error);
+			}
+			else if(!data) {
 				res.status(500).send();
 			} else {
 				res.status(201).json(data);

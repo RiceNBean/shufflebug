@@ -8,6 +8,7 @@ router.post('/db/playlists/create', playlistsController.createPlaylist);
 
 //all playlist view
 router.get('/db/playlists/getAll', playlistsController.getAllPlaylists);
+router.post('/db/playlists/delete', playlistsController.deletePlaylist)
 
 //single playlist view
 router.get('/db/playlists/:id', playlistsController.getPlaylist);
