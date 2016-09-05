@@ -6,10 +6,13 @@ var PlaylistSchema = new mongoose.Schema({
 	//syntax for adding a field with a default, required && unique value
 	name: { type: String, required: true, unique: true },
 	description: { type: String, required: true },
+	creator: { type: String, required: true },
 	limit: { type: Number, default: 25 },
-	//experation, document will expire after a week
+	//expiration, document will expire after a week
 	createdAt: { type: Date, expires: '7d', default: Date.now },
+	expiringIn: String,
 	score: Number,
+	fire: Boolean,
 	tags: [],
 	songs: [{
 		title: String,

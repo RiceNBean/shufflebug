@@ -6,7 +6,7 @@
     </button>
     <button class="btn disabled" type="button" name="button">Bookmark</button> <br>
     <p>Description: {{vm.description}}</p>
-    <p>Number of songs in playlist: {{vm.songData.length}}</p>
+    <p>Number of songs in playlist: {{vm.songData.length}} / {{vm.limit}}</p>
     <table class="table">
       <thead>
         <tr>
@@ -45,7 +45,7 @@
           <i ng-click="vm.downvote(song._id)" class="fa fa-thumbs-o-down" aria-hidden="true"></i> {{song.downvotes}}
         </td>
         <td>
-          <i ng-click="vm.removeSong(song._id)" class="fa fa-times" aria-hidden="true"></i>
+          <i ng-click="vm.removeSong(song._id)" class="fa fa-times" aria-hidden="true" ng-if="creator"></i>
         </td>
       </tr>
     </table>

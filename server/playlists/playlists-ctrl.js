@@ -10,6 +10,13 @@ function checkDuplicate(songArray, URL){
 	return flag;
 }
 
+function timeConvert(ms){
+	var timeLeft = 604800000 - ms;
+	var hr = Math.floor(timeLeft / 3600000);
+	var min =  Math.floor((timeLeft % 3600000) / 60000);
+	return hr + "hr " + (min < 10 ? '0' : '') + min + 'min';
+}
+
 module.exports = {
 
 	//creates new playlist from playlist model
@@ -31,6 +38,18 @@ module.exports = {
 		})
 	},
 
+	//deletes playlist from collection
+	deletePlaylist: function(req, res) {
+		Playlist.remove({ _id: req.body.playlistID },
+		function(error) {
+			if (error) {
+				res.send(error);
+			} else {
+				res.status(201).send();
+			}
+		});
+	},
+
 	//gets all playlists
 	getAllPlaylists: function(req, res) {
 		Playlist.find(function(error, data) {
@@ -38,9 +57,14 @@ module.exports = {
 				res.send(error);
 			} else {
 				data.map(function(playlist) {
-					return playlist.score = playlist.songs.reduce(function(acc, song) {
+					var createdTime = new Date(playlist.createdAt).getTime();
+					var currentTime = new Date().getTime();
+					playlist.expiringIn = timeConvert(currentTime-createdTime);
+					playlist.score = playlist.songs.reduce(function(acc, song) {
 						return acc+song.upvotes-song.downvotes
 					}, 0);
+					playlist.fire = playlist.score>=10?true:false
+					return playlist;
 				});
 				res.status(200).json(data);
 			}	

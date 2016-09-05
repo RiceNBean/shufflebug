@@ -2,14 +2,6 @@ angular.module('app.playlist')
 .factory("Playlist", Playlist);
 
 function Playlist($http){
-  return{
-    fetchSongs: fetchSongs,
-    searchSong: searchSong,
-    addSong: addSong,
-    removeSong: removeSong,
-    upvote: upvote,
-    downvote: downvote
-  }
 
   function fetchSongs(playlistID){
     return $http({
@@ -25,6 +17,7 @@ function Playlist($http){
       console.log("Error in fetching songs of playlist");
     })
   }
+
   function searchSong(searchInput){
     console.log("in playlist factory, searchsong", searchInput);
     return $http({
@@ -42,6 +35,7 @@ function Playlist($http){
       console.log("Error in search song");
     })
   }
+
   function addSong(songObj, playlistID){
     return $http({
       method: 'POST',
@@ -60,6 +54,7 @@ function Playlist($http){
       return err;
     })
   }
+  
   function removeSong(songID, playlistID){
     return $http({
       method: 'POST',
@@ -76,6 +71,7 @@ function Playlist($http){
       console.log("Error in adding song of playlist");
     })
   }
+
   function upvote(songID, playlistID){
     return $http({
       method: 'POST',
@@ -92,6 +88,7 @@ function Playlist($http){
       console.log("Error in adding song of playlist");
     })
   }
+
   function downvote(songID, playlistID){
     return $http({
       method: 'POST',
@@ -108,4 +105,14 @@ function Playlist($http){
       console.log("Error in adding song of playlist");
     })
   }
+
+  return{
+    fetchSongs: fetchSongs,
+    searchSong: searchSong,
+    addSong: addSong,
+    removeSong: removeSong,
+    upvote: upvote,
+    downvote: downvote
+  }
+
 }
