@@ -1,0 +1,78 @@
+ <div class="row">
+  <div class="col s7">
+    <h3>{{vm.playlistName}}</h3>
+    <p>Description: {{vm.description}}</p>
+    <p>Number of songs in playlist: {{vm.songData.length}} / {{vm.limit}}</p>
+    <button class="btn" type="button" name="button">
+      Play
+    </button>
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Play</th>
+          <th ng-click="field='title'; reverseSort=!reverseSort">
+            Song Title
+            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+          </th>
+          <th ng-click="field='duration'; reverseSort=!reverseSort">
+            Length
+            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+          </th>
+          <th ng-click="field='upvotes'; reverseSort=!reverseSort">
+            up
+            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+          </th>
+          <th ng-click="field='downvotes'; reverseSort=!reverseSort">
+            down
+            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr ng-repeat="song in vm.songData | orderBy: field:reverseSort">
+        <td>{{$index+1}}</td>
+        <td>
+          <i ng-click="vm.playSong(song.songURL)" class="fa fa-play" aria-hidden="true"></i>
+        </td>
+        <td>{{song.title}}</td>
+        <td class="col-md-2">{{song.duration}}</td>
+        <td class="col-md-2">
+          <i ng-click="vm.upvote(song._id)" class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{song.upvotes}}
+        </td>
+        <td class="col-md-2">
+          <i ng-click="vm.downvote(song._id)" class="fa fa-thumbs-o-down" aria-hidden="true"></i> {{song.downvotes}}
+        </td>
+        <td>
+          <i ng-click="vm.removeSong(song._id)" class="fa fa-times" aria-hidden="true" ng-if="creator"></i>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="col s5">
+    <h3>Search &amp; add songs</h3>
+    <div class="input-field">
+    <form name="searchSong">
+      <input id="search" type="search" value=""
+        ng-model="vm.searchInput"
+        ng-model-options="{ debounce: 3000 }"
+        ng-change="vm.searchSong()" required>
+        <label for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+    </div>
+
+      <p ng-if="vm.searchInput">You search for {{vm.searchInput}}</p>
+      <p style="color:red;" ng-if="flag">Duplicate exists in playlist!</p>
+      <ul ng-if="vm.searchInput" ng-repeat="entry in vm.searchResults">
+        <i class="material-icons" ng-click="vm.addSong(entry.songURL, entry.title, entry.duration)" style="background-color: white; color: black;">add</i>
+        <li>{{entry.title}} - </li>
+        <li>{{entry.duration}}
+        </li>
+      </ul>
+    </form>
+  </div>
+
+</div>

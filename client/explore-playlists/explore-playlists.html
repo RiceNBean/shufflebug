@@ -1,0 +1,30 @@
+<div class="row input-field">
+    <div class="exploreSearch col s4">
+        <input id="search" type="search" placeholder="Search Playlists" ng-model="playlistSearch">
+        <label for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+    </div><br>
+</div>
+
+<div class="row">
+    <div class="col s4 card" ng-repeat="playlist in playlists | filter: {name:playlistSearch} | orderBy: '-score'">
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" ng-src="../assets/headphone.png">
+        </div>
+        <div class="card-content">
+          <span class="card-title grey-text text-darken-4">{{playlist.name}}</span>
+            <p class="card-text" ng-if="playlist.fire">Description: {{playlist.description}}
+              <i class="fa fa-bug" aria-hidden="true"></i>
+            </p>
+            <p class="card-text" ng-if="!playlist.fire">Description: {{playlist.description}}</p>
+            <p class="card-text">Expiring In: {{playlist.expiringIn}}</p>
+            <a href="#" ng-click="vm.redirectPlaylist(playlist._id)">
+                Go to Playlist
+            </a>
+            <a href="#" id="remove-icon" ng-if="playlist.admin" ng-click="vm.deletePlaylist(playlist._id)">
+                <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+            </a>
+        </div>
+
+    </div>
+</div>

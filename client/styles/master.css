@@ -1,0 +1,76 @@
+#music-player{
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  margin-bottom: 0;
+}
+.flex-container {
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+}
+.flex-item {
+  width: 50%;
+  margin: 2px;
+}
+li {
+  display: inline;
+}
+body{
+  background-image: url('../assets/main-background.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: black;
+  background-position: top center;
+  padding-bottom: 200px;
+}
+.nav-wrapper{
+  background-color: black;
+  color: white;
+}
+.nav-right{
+  position: absolute;
+  right: 2em;
+  text-align: right;
+}
+.container{
+  color: white;
+}
+h3, p, li{
+  color: white;
+  font-size: 0.8em;
+}
+table{
+  color: white;
+  font-size: 0.8em;
+}
+.btn{
+  background-color: white;
+  color: black;
+}
+.btn:focus, .btn:active{
+  background-color: #1eaacd;
+  color: black;
+}
+.btn:hover{
+  background-color: #1eaacd;
+  color:white
+}
+.btn-floating{
+  background-color: #1eaacd;
+}
+input{
+  width:50%;
+  color: white;
+}
+.container{
+  width: 30%;
+}
+.card{
+  text-align: center;
+}
+#remove-icon{
+  position : absolute;
+  right: 10px;
+}
