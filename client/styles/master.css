@@ -16,3 +16,20 @@
 li {
   display: inline;
 }
+body{
+  background-image: url('../assets/main-background.jpg');
+  background-size: 90%;;
+}
+.nav-wrapper{
+  background-color: black;
+  color: white;
+}
+.nav-right{
+  position: fixed;
+  right: 2em;
+  text-align: right;
+}
+.container{
+  color: white;
+  /*background-color: black;*/
+}
