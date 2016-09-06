@@ -23,6 +23,7 @@ body{
   background-size: cover;
   background-color: balck;
   background-position: center center;
+  padding-bottom: 200px;
 }
 .nav-wrapper{
   background-color: black;
@@ -35,5 +36,31 @@ body{
 }
 .container{
   color: white;
-  /*background-color: black;*/
+}
+h3, p, li{
+  color: white;
+  font-size: 0.8em;
+}
+table{
+  color: white;
+  font-size: 0.8em;
+}
+.btn{
+  background-color: white;
+  color: black;
+}
+.btn:focus{
+  background-color: #1eaacd;
+  color: black;
+}
+.btn:hover{
+  background-color: #1eaacd;
+  color:white
+}
+input{
+  width:50%;
+  color: white;
+}
+.container{
+  width: 30%;
 }

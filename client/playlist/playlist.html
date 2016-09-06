@@ -1,12 +1,12 @@
  <div class="flex-container">
   <div class="flex-item">
     <h3>{{vm.playlistName}}</h3>
-     <button class="btn waves-effect waves-light" type="button" name="button">
-       Play all
-    </button>
-    <button class="btn disabled" type="button" name="button">Bookmark</button> <br>
     <p>Description: {{vm.description}}</p>
     <p>Number of songs in playlist: {{vm.songData.length}} / {{vm.limit}}</p>
+    <button class="btn" type="button" name="button">
+      Play
+    </button>
+    <br>
     <table class="table">
       <thead>
         <tr>
@@ -54,18 +54,23 @@
 
   <div class="flex-item">
     <h3>Search &amp; add songs</h3>
+    <div class="input-field">
     <form name="searchSong">
-      <input type="text" placeholder="Search" value=""
+      <input id="search" type="search" value=""
         ng-model="vm.searchInput"
         ng-model-options="{ debounce: 3000 }"
         ng-change="vm.searchSong()" required>
+        <label for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+    </div>
+
       <p ng-if="vm.searchInput">You search for {{vm.searchInput}}</p>
       <p style="color:red;" ng-if="flag">Could not add song</p>
 
       <ul ng-if="vm.searchInput" ng-repeat="entry in vm.searchResults">
         <li>{{entry.title}}</li>
         <li>{{entry.duration}}
-          <button ng-click="vm.addSong(entry.songURL, entry.title, entry.duration)" type="button">Add</button>
+          <button class="btn" ng-click="vm.addSong(entry.songURL, entry.title, entry.duration)" type="button">Add</button>
         </li>
       </ul>
     </form>

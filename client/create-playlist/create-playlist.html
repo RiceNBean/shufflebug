@@ -2,19 +2,20 @@
   <h3>Create New Playlist</h3>
 
   <form ng-submit="vm.submitPlaylist()" class="form-group">
-    Name of playlist:
+    Name:
     <input type="text" ng-model="vm.playlistName" value="" required><br>
-    Description of playlist:
+    Description:
     <input type="text" ng-model="vm.description" value="" required><br>
-    Limit (Max number of songs):
-    <input type="radio" ng-model="vm.limit" value="30"> 30
-    <input type="radio" ng-model="vm.limit" value="50"> 50
+    Max number of songs (1-50):
+    <input type="number" ng-model="vm.limit" min="1" max="50">
     <br>
     Tags:
     <input type="text" value=""><br>
 
     <br>
-    <input type="submit" value="Submit">
+    <button class="btn waves-effect waves-light" type="submit" value="Submit">
+      Submit<i class="material-icons right">send</i>
+    </button>
   </form>
 
 </div>
