@@ -18,7 +18,11 @@ li {
 }
 body{
   background-image: url('../assets/main-background.jpg');
-  background-size: 90%;;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: balck;
+  background-position: center center;
 }
 .nav-wrapper{
   background-color: black;
