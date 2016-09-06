@@ -8,8 +8,9 @@
     <script src="./lib/plangular-3/dist/plangular.min.js" charset="utf-8"></script>
     <script src="./lib/angular-cookies/angular-cookies.min.js" charset="utf-8"></script>
 
-    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="./lib/materialize-css/dist/css/materialize.min.css" charset="utf-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.min.css" charset="utf-8">
     <link rel="stylesheet" href="/styles/master.css" charset="utf-8">
 
@@ -37,19 +38,25 @@
     <nav>
       <div class="nav-wrapper">
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <li><h3>shufflebug</h3></li>
+          <li><i class="fa fa-bug" style="color:white; font-size:1.8em" aria-hidden="true"></i></li>
+          <li><a href="/">shufflebug</a></li>
           <li><a href="#/create">Create Playlist</a></li>
-          <li><a href="#/playlist">Single Playlist</a></li>
+          <li><a href="#/playlist">Recent Playlist</a></li>
           <li><a href="#/explore">Explore Playlists</a></li>
-          <li><a href="#/signin">Sign In</a></li>
-          <li><a href="#/signup">Sign Up</a></li>
-          <li><a href="#/signout">Sign Out</a></li>
+          <div class="nav-right">
+            <li><a href="#/signin">Sign In</a></li>
+            <li><a href="#/signup">Sign Up</a></li>
+            <li><a href="#/signout">Sign Out</a></li>
+          </div>
         </ul>
       </div>
     </nav>
 
 
-    <div ui-view></div>
+    <div ui-view>
+      <div class="home">
+      </div>
+    </div>
 
     <div id="music-player" ng-include="'./player/player.html'"></div>
   </body>

@@ -8,7 +8,6 @@ function AuthCtrl($state, Auth, $cookies, $scope) {
   $scope.flag = false;
 
   vm.signin = function() {
-    console.log('inside auth-ctrl.js signin');
     $scope.flag = false;
     var user = {
       username: vm.username,
@@ -29,7 +28,6 @@ function AuthCtrl($state, Auth, $cookies, $scope) {
   }
 
   vm.signup = function() {
-    console.log('inside auth-ctrl.js signup');
     $scope.flag = false;
     var user = {
       username: vm.username,
@@ -50,7 +48,6 @@ function AuthCtrl($state, Auth, $cookies, $scope) {
   }
 
   vm.signout = function() {
-    console.log('inside auth-ctrl.js signout');
     $cookies.remove('playlistID');
     $cookies.remove('currentUser');
     $state.go('signin');

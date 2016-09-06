@@ -9,7 +9,7 @@ function ExploreCtrl($scope, Explore, $cookies, $state) {
   $scope.playlists;
 
   //on click we should go to a new endpoint
-  vm.redirectPlaylist = function(playlistID){
+  vm.redirectPlaylist = function(playlistID) {
     //grab that id
     //$cookies.get(_id);
     //we concat the playlistID to 'playlist' endpoint to access each playlist
@@ -21,7 +21,7 @@ function ExploreCtrl($scope, Explore, $cookies, $state) {
     console.log('inside explore-playlists-ctrl.js getPlaylists');
     //get data from our database
     Explore.getPlaylists()
-    .then(function(data){
+    .then(function(data) {
       //check if user is playlist creator
       data.map(function(playlist) {
         playlist.admin = playlist.creator===currentUser?true:false;

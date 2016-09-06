@@ -2,7 +2,7 @@ angular.module('app.create', ['ngCookies', 'ui.router'])
 .controller('CreatePlaylistCtrl', CreatePlaylistCtrl);
 
 function CreatePlaylistCtrl($state, Create, $cookies, $scope) {
-  
+
   var vm = this;
   var currentUser = $cookies.get('currentUser');
   $scope.flag = false;
@@ -16,7 +16,7 @@ function CreatePlaylistCtrl($state, Create, $cookies, $scope) {
       creator: currentUser
     }
     Create.postPlaylist(playerInfo)
-    .then(function(result){
+    .then(function(result) {
       if(result.status === 500) {
         vm.playlistName = '';
         $scope.flag = true;
@@ -26,11 +26,13 @@ function CreatePlaylistCtrl($state, Create, $cookies, $scope) {
         return result;
       }
     });
-
   }
 
   function init() {
-    if(currentUser === undefined) $state.go('signin');
+    if(currentUser === undefined) {
+      $state.go('signin');
+    }
+
   }
 
   init();
