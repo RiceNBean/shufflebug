@@ -29,7 +29,7 @@ module.exports = {
 				newUser.save(function (err, post) {
 					if (err) {
 						console.log('err signing up: ', err);
-						res.send(err);
+						res.status(500).send();
 					} else {
 						res.status(201).json(post._id);
 					}
