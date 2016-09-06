@@ -21,10 +21,11 @@ module.exports = {
 
 	//creates new playlist from playlist model
 	createPlaylist: function(req, res) {
-		console.log('inside playlists-ctrl.js createPlaylist');
+		//native mongoDB method
 		Playlist.findOne({name: req.body.name},
 		function(err, data) {
-			if(!data) { 
+			if(!data) {
+				//create new playlist required from model
 				var newPlaylist = new Playlist(req.body);
 				newPlaylist.save(function (err, post) {
 					if (err) {
@@ -35,6 +36,7 @@ module.exports = {
 					}
 				});
 			} else {
+				//500 error because playlist already exists
 				res.status(500).send();
 			}
 		})
@@ -42,7 +44,7 @@ module.exports = {
 
 	//deletes playlist from collection
 	deletePlaylist: function(req, res) {
-		console.log('inside playlists-ctrl.js deletePlaylist');
+		//_id is a unique id mongoDB gives to every new document created
 		Playlist.remove({ _id: req.body.playlistID },
 		function(err) {
 			if (err) {
@@ -56,7 +58,6 @@ module.exports = {
 
 	//gets all playlists
 	getAllPlaylists: function(req, res) {
-		console.log('inside playlists-ctrl.js getAllPlaylists');
 		Playlist.find(function(err, data) {
 			if (err) {
 				console.log('err retrieving playlists: ', err);
@@ -73,13 +74,12 @@ module.exports = {
 					return playlist;
 				});
 				res.status(200).json(data);
-			}	
+			}
 		});
 	},
 
 	//gets specific playlist based on id
 	getPlaylist: function(req, res) {
-		console.log('inside playlists-ctrl.js getPlaylist');
 		Playlist.findById(req.params.id, function(err, data) {
 			if (err) {
 				console.log('err retrieving playlist: ', err);
@@ -92,7 +92,6 @@ module.exports = {
 
 	//adds song to playlist
 	addSong: function(req, res) {
-		console.log('inside playlists-ctrl.js addSong');
 		Playlist.findOne({ _id: req.body.playlistID },
 		function(err, data) {
 			if (err) {
@@ -119,7 +118,6 @@ module.exports = {
 
 	//removes song from playlists, needs listID && songID
 	removeSong: function(req, res) {
-		console.log('inside playlists-ctrl.js removeSong');
 		Playlist.update({ _id: req.body.playlistID },
 		{ $pull:{ "songs": { _id: req.body.songID }}},
 		function(err, numAffected) {
@@ -134,7 +132,6 @@ module.exports = {
 
 	//upvotes song from playlists, needs listID && songID
 	upvoteSong: function(req, res) {
-		console.log('inside playlists-ctrl.js upvoteSong');
 		Playlist.update({ _id: req.body.playlistID, "songs._id": req.body.songID},
 		{ $inc : { "songs.$.upvotes": 1 } },
 		function(err, numAffected) {
@@ -149,7 +146,6 @@ module.exports = {
 
 	//downvotes song from playlists, needs listID && songID
 	downvoteSong: function(req, res) {
-		console.log('inside playlists-ctrl.js downvoteSong');
 		Playlist.update({ _id: req.body.playlistID, "songs._id": req.body.songID},
 		{ $inc : { "songs.$.downvotes": 1 } },
 		function(err, numAffected) {

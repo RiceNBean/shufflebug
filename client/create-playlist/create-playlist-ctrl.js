@@ -5,6 +5,7 @@ function CreatePlaylistCtrl($state, Create, $cookies, $scope) {
 
   var vm = this;
   var currentUser = $cookies.get('currentUser');
+  //$scope.flag is true if playlistname is taken
   $scope.flag = false;
 
   vm.submitPlaylist = function() {
@@ -18,10 +19,13 @@ function CreatePlaylistCtrl($state, Create, $cookies, $scope) {
     Create.postPlaylist(playerInfo)
     .then(function(result) {
       if(result.status === 500) {
+        //500 error from server if playlist name is taken
         vm.playlistName = '';
         $scope.flag = true;
       } else {
+        //store playlistID in cookies
         $cookies.put('playlistID', result);
+        //redirect user to single playlist
         $state.go('playlist');
         return result;
       }
@@ -30,6 +34,7 @@ function CreatePlaylistCtrl($state, Create, $cookies, $scope) {
 
   function init() {
     if(currentUser === undefined) {
+      //redirect to signin if not authenticated
       $state.go('signin');
     }
 

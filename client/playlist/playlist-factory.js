@@ -4,7 +4,6 @@ angular.module('app.playlist')
 function Playlist($http) {
 
   function fetchSongs(playlistID) {
-    console.log('inside playlist-factory.js fetchSongs');
     return $http({
       method: 'GET',
       url: '/db/playlists/'+playlistID
@@ -19,7 +18,6 @@ function Playlist($http) {
   }
 
   function searchSong(searchInput) {
-    console.log('inside playlist-factory.js searchSong');
     return $http({
       method: 'GET',
       url: '/api/soundcloud/search',
@@ -37,7 +35,6 @@ function Playlist($http) {
   }
 
   function addSong(songObj, playlistID) {
-    console.log('inside playlist-factory.js addSong');
     return $http({
       method: 'POST',
       url: 'db/playlists/song/add',
@@ -54,9 +51,8 @@ function Playlist($http) {
       return err;
     });
   }
-  
+
   function removeSong(songID, playlistID) {
-    console.log('inside playlist-factory.js removeSong');
     return $http({
       method: 'POST',
       url: 'db/playlists/song/remove',
@@ -74,7 +70,6 @@ function Playlist($http) {
   }
 
   function upvote(songID, playlistID) {
-    console.log('inside playlist-factory.js upvote');
     return $http({
       method: 'POST',
       url: 'db/playlists/song/upvote',
@@ -92,7 +87,6 @@ function Playlist($http) {
   }
 
   function downvote(songID, playlistID) {
-    console.log('inside playlist-factory.js downvote');
     return $http({
       method: 'POST',
       url: 'db/playlists/song/downvote',

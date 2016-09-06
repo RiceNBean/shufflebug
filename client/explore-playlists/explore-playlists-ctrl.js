@@ -18,7 +18,6 @@ function ExploreCtrl($scope, Explore, $cookies, $state) {
   };
 
   vm.getPlaylists = function() {
-    console.log('inside explore-playlists-ctrl.js getPlaylists');
     //get data from our database
     Explore.getPlaylists()
     .then(function(data) {
@@ -33,7 +32,6 @@ function ExploreCtrl($scope, Explore, $cookies, $state) {
   }
 
   vm.deletePlaylist = function(playlistID) {
-    console.log('inside explore-playlists-ctrl.js deletePlaylist');
     Explore.deletePlaylist(playlistID)
     .then(function() {
       if(playlistID === currentPlaylist) $cookies.remove('playlistID');
