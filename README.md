@@ -4,11 +4,9 @@
 ## Overview:
 
 
-shufflebug
+[shufflebug](https://shufflebug.herokuapp.com)
 
 An interactive crowd-sourced playlist builder.
-
-
 
 
 ## Team:
@@ -18,9 +16,9 @@ An interactive crowd-sourced playlist builder.
 
 Alberto Esquivias
 
+Tiffany Ip
+
 David Kim
 
 Calvin Ton
-
-Tiffany Ip
 
