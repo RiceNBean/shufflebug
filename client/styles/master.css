@@ -49,7 +49,7 @@ table{
   background-color: white;
   color: black;
 }
-.btn:focus{
+.btn:focus, .btn:active{
   background-color: #1eaacd;
   color: black;
 }
@@ -57,10 +57,20 @@ table{
   background-color: #1eaacd;
   color:white
 }
+.btn-floating{
+  background-color: #1eaacd;
+}
 input{
   width:50%;
   color: white;
 }
 .container{
   width: 30%;
+}
+.card{
+  text-align: center;
+}
+#remove-icon{
+  position : absolute;
+  right: 10px;
 }

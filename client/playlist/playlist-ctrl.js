@@ -12,7 +12,7 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope) {
   vm.fetchSongs = function() {
     console.log('inside playlist-ctrl.js fetchSongs');
     Playlist.fetchSongs(playlistID)
-    .then(function(result){
+    .then(function(result) {
       vm.playlistName = result.name;
       vm.description = result.description;
       vm.songData = result.songs;
@@ -25,11 +25,12 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope) {
   vm.searchSong = function() {
     console.log('inside playlist-ctrl.js searchSong');
     Playlist.searchSong(vm.searchInput)
-    .then(function(result){
-      result.map(function(entry){
+    .then(function(result) {
+      result.map(function(entry) {
         return entry.duration = toMinute(entry.duration);
       })
       vm.searchResults = result;
+      $scope.flag = false;
       return result;
     });
   }
@@ -43,7 +44,7 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope) {
       duration: duration
     }
     Playlist.addSong(songObj, playlistID)
-    .then(function(result){
+    .then(function(result) {
       if(result.status === 500) {
         $scope.flag = true;
       } else {
@@ -57,7 +58,7 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope) {
   vm.removeSong = function(songID) {
     console.log('inside playlist-ctrl.js removeSong');
     Playlist.removeSong(songID, playlistID)
-    .then(function(result){
+    .then(function(result) {
       vm.fetchSongs();
       return result;
     });
@@ -66,7 +67,7 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope) {
   vm.upvote = function(songID) {
     console.log('inside playlist-ctrl.js upvote');
     Playlist.upvote(songID, playlistID)
-    .then(function(result){
+    .then(function(result) {
       //fetch playlist
       vm.fetchSongs();
       return result;
@@ -76,7 +77,7 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope) {
   vm.downvote = function(songID) {
     console.log('inside playlist-ctrl.js downvote');
     Playlist.downvote(songID, playlistID)
-    .then(function(result){
+    .then(function(result) {
       vm.fetchSongs();
       return result;
     });
@@ -87,7 +88,7 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope) {
     Player.setCurrent(songURL);
     $rootScope.$emit('change');
   }
-  
+
   function toMinute(ms) {
     var min = Math.floor(ms / 60000);
     var sec = ((ms % 60000) / 1000).toFixed(0);
@@ -108,7 +109,7 @@ function PlaylistCtrl(Playlist, Player, $rootScope, $cookies, $state, $scope) {
   }
 
   init();
-  
+
   return vm;
 
 }

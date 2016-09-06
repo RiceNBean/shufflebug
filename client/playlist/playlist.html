@@ -1,5 +1,5 @@
- <div class="flex-container">
-  <div class="flex-item">
+ <div class="row">
+  <div class="col s7">
     <h3>{{vm.playlistName}}</h3>
     <p>Description: {{vm.description}}</p>
     <p>Number of songs in playlist: {{vm.songData.length}} / {{vm.limit}}</p>
@@ -52,7 +52,7 @@
   </div>
 
 
-  <div class="flex-item">
+  <div class="col s5">
     <h3>Search &amp; add songs</h3>
     <div class="input-field">
     <form name="searchSong">
@@ -65,12 +65,11 @@
     </div>
 
       <p ng-if="vm.searchInput">You search for {{vm.searchInput}}</p>
-      <p style="color:red;" ng-if="flag">Could not add song</p>
-
+      <p style="color:red;" ng-if="flag">Duplicate exists in playlist!</p>
       <ul ng-if="vm.searchInput" ng-repeat="entry in vm.searchResults">
-        <li>{{entry.title}}</li>
+        <i class="material-icons" ng-click="vm.addSong(entry.songURL, entry.title, entry.duration)" style="background-color: white; color: black;">add</i>
+        <li>{{entry.title}} - </li>
         <li>{{entry.duration}}
-          <button class="btn" ng-click="vm.addSong(entry.songURL, entry.title, entry.duration)" type="button">Add</button>
         </li>
       </ul>
     </form>

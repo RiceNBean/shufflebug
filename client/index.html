@@ -38,6 +38,7 @@
     <nav>
       <div class="nav-wrapper">
         <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><i class="fa fa-bug" style="color:white; font-size:1.8em" aria-hidden="true"></i></li>
           <li><a href="/">shufflebug</a></li>
           <li><a href="#/create">Create Playlist</a></li>
           <li><a href="#/playlist">Recent Playlist</a></li>
@@ -52,7 +53,10 @@
     </nav>
 
 
-    <div ui-view></div>
+    <div ui-view>
+      <div class="home">
+      </div>
+    </div>
 
     <div id="music-player" ng-include="'./player/player.html'"></div>
   </body>
