@@ -28,9 +28,9 @@
     "mongoose": "^4.5.10",
     "node-soundcloud": "0.0.5",
     "plangular-3": "^3.1.2",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "font-awesome": "^4.6.3"
   },
   "devDependencies": {
-    "font-awesome": "^4.6.3"
   }
 }
