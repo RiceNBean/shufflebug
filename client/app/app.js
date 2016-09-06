@@ -36,7 +36,7 @@ angular.module('app', ['ui.router', 'app.auth', 'app.create', 'app.playlist', 'p
   });
 
   $urlRouterProvider.otherwise('/');
-
+  //use your own soundcloud client ID
   plangularConfigProvider.clientId = '81348298631dbd924acba1a117c7ab7d';
 
 });

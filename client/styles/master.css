@@ -17,12 +17,12 @@ li {
   display: inline;
 }
 body{
-  background-image: url('../assets/main-background.jpg');
+  background-image: url('../assets/main-background.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: balck;
-  background-position: center center;
+  background-color: black;
+  background-position: top center;
   padding-bottom: 200px;
 }
 .nav-wrapper{
@@ -30,7 +30,7 @@ body{
   color: white;
 }
 .nav-right{
-  position: fixed;
+  position: absolute;
   right: 2em;
   text-align: right;
 }

@@ -4,7 +4,6 @@ angular.module('app.create')
 function Create($http) {
 
   function postPlaylist(playlistInfo){
-    console.log('inside create-playlist-factory.js');
     return $http({
       method: 'POST',
       url: '/db/playlists/create',
@@ -15,7 +14,6 @@ function Create($http) {
       return res.data;
     })
     .catch(function(err){
-      console.log('err creating playlist: ', err);
       return err;
     });
   }

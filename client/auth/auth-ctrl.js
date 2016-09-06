@@ -4,7 +4,9 @@ angular.module('app.auth', ['ngCookies', 'ui.router'])
 function AuthCtrl($state, Auth, $cookies, $scope) {
 
   var vm = this;
+  //for further development, store session token instead
   var currentUser = $cookies.get('currentUser');
+  //$scope.flag is authorization error: e.g. wrong password in signin, duplicate username in signup
   $scope.flag = false;
 
   vm.signin = function() {

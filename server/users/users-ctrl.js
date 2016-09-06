@@ -4,7 +4,6 @@ module.exports = {
 
 	//sign in (no password encryption yet)
 	signin: function (req, res) {
-		console.log('inside users-ctrl.js signin');
 		User.findOne({ username: req.body.username, password: req.body.password },
 		function(err, post) {
 			if(err) {
