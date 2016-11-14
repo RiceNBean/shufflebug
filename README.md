@@ -1,5 +1,5 @@
 
-# Shufflbug
+# Shufflebug
 A crowdsourcing music playlist building app for events and public spaces.
 
 ## Overview:
